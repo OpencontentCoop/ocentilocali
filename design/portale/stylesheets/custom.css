@@ -1,0 +1,24 @@
+div#logo span.sitename {
+    clear: right;
+    cursor: pointer;
+    float: right;
+    text-align: right;
+    width: auto;
+}
+
+div#logo span.logo-portale
+{
+    display:none;
+}
+
+#topmenu
+{
+    display:none !important;
+}
+
+div#links
+{
+    display: block !important
+}
+
+div#links ul li a{border: none}

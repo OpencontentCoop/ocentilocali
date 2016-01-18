@@ -1,0 +1,379 @@
+/*
+ STYle GENerator EntiLocali versione 0.1
+ Foglio di stile basato su STYle GENerator versione 0.4 del Comune di Trento
+*/
+
+
+/******************************************************************
+1. SFONDO PAGINA -> usare attributo background in oggetti di tipo comunita o comune
+*/
+
+
+/******************************************************************
+2. SFONDO CONTENUTI -> non più utilizzabile perchésovrascritto da .columns-content che visualizza i bordi arrotondati
+*/
+
+
+
+/******************************************************************
+3. COLORE MENU PRINCIPALE
+Usare se si vuole modificare il colore caratteristico del bordo della finestra aperta del topmenu e del logo. 
+Per coerenza si consiglia di configurare questo colore anche per la regole 4.2
+*/
+
+div#page.<nomestile> div#topmenu ul#topmenu-firstlevel div.secondlevel
+{
+    border-color:<colore 2>
+}
+
+div#page div#topmenu ul#topmenu-firstlevel h2 a
+{
+    color:<colore 2>
+}
+
+
+/******************************************************************
+4. COLORI MENU DI SINISTRA
+Usare se si vuole modificare l'aspetto del menu di sinistra.
+*/
+
+/* 4.1 Sfondo del menu -> non più utilizzabile */
+
+/* 4.2 Colore di sfondo del menu attivo (le sfumature sono automatiche) */
+div#page.<nomestile> div#sidemenu ul li div span.handler,
+div#page.<nomestile> div#sidemenu  a.current{
+	background-color:<colore 2>;
+}
+
+/* 4.3 Colore di sfondo dei livelli di menu (NOTABENE: il .second_level_menu è il primo livello del menu di sinistra) */
+div#page.<nomestile> div.second_level_menu{
+    background-color:#e7e7e7;
+}
+div#page.<nomestile> div.third_level_menu{
+    background-color:#efefef;
+}
+div#page.<nomestile> div.fourth_level_menu{
+    background-color:#f3f3f3;
+}
+
+/* 4.4 Colore del testo del menu di sinistra */
+div#page.<nomestile> div#sidemenu a {
+	color:#000;
+}
+
+
+
+/******************************************************************
+5. COLORI BOTTONI DI DEFAULT
+Usare se si vuole modificare l'aspetto dei bottoni principali (Ad esempio "Cerca" o "Accedi con il tuo utente per lasciare un commento")
+La regola viene recepita solo dai contenuti effettivi della pagina (#columns-position): vengono perciò esclusi i bottoni esterni (per esempio il bottone di 'Aiutaci a migliorare')
+*/
+div#page.<nomestile> #columns-position a.button, 
+div#page.<nomestile> #columns-position button.button, 
+div#page.<nomestile> #columns-position input.button,
+div#page.<nomestile> #columns-position a.defaultbutton, 
+div#page.<nomestile> #columns-position button.defaultbutton, 
+div#page.<nomestile> #columns-position input.defaultbutton {
+	background-color:<colore 2>;
+	border:1px solid <colore 1>;
+	color:#FFFFFF;
+}
+
+
+
+
+/******************************************************************
+6. BOX ACCORDION
+*/
+
+/* 6.1 Bordi accordion */
+div#page.<nomestile> div.box-accordion div.border-mc{
+    background: <colore 3>;
+}
+div#page.<nomestile> div.box-accordion div.border-tl{ background-image: url(images/<nomestile>/accordion-tl.gif); }
+div#page.<nomestile> div.box-accordion div.border-tr{ background-image: url(images/<nomestile>/accordion-tr.gif); }
+div#page.<nomestile> div.box-accordion div.border-tc{ background-image: url(images/<nomestile>/accordion-tc.gif); }
+div#page.<nomestile> div.box-accordion div.border-ml{ background-image: url(images/<nomestile>/accordion-ml.gif); }
+div#page.<nomestile> div.box-accordion div.border-mr{ background-image: url(images/<nomestile>/accordion-mr.gif); }
+div#page.<nomestile> div.box-accordion div.border-bl{ background-image: url(images/<nomestile>/accordion-bl.gif); }
+div#page.<nomestile> div.box-accordion div.border-br{ background-image: url(images/<nomestile>/accordion-br.gif); }
+div#page.<nomestile> div.box-accordion div.border-bc{ background-image: url(images/<nomestile>/accordion-bc.gif); }
+
+/* 6.2 Icone accordion */
+div#page.<nomestile> div.box-accordion  .ui-icon  { background-image:url(images/<nomestile>/arrow-accordion.gif); }
+
+
+
+/******************************************************************
+7. BOX TABS
+*/
+
+/* 7.1 Bordi tabs header */
+div#page.<nomestile> div.box-tabs-header div.border-mc{
+    background: <colore 2>;
+}
+div#page.<nomestile> div.box-tabs-header div.border-tl{ background-image: url(images/<nomestile>/tabsheader-tl.gif); }
+div#page.<nomestile> div.box-tabs-header div.border-tr{ background-image: url(images/<nomestile>/tabsheader-tr.gif); }
+div#page.<nomestile> div.box-tabs-header div.border-tc{ background-image: url(images/<nomestile>/tabsheader-tc.gif); }
+div#page.<nomestile> div.box-tabs-header div.border-ml{ background-image: url(images/<nomestile>/tabsheader-ml.gif); }
+div#page.<nomestile> div.box-tabs-header div.border-mr{ background-image: url(images/<nomestile>/tabsheader-mr.gif); }
+
+/* 7.2 Colori linguette tabs */
+	
+	/* 7.2.1 Immagini pre rendere il bordo arrotondato nelle linguette dei tab */
+	div#page.<nomestile> .block-lista_tab .ui-tabs .ui-tabs-nav li { background-image:url(../images/<nomestile>/tabs-border-tr.gif); background-position:top right; background-repeat:no-repeat }
+	div#page.<nomestile> .block-lista_tab .ui-tabs .ui-tabs-nav li  a{ background-image:url(../images/<nomestile>/tabs-border-tl.gif);	background-position:top left; background-repeat:no-repeat }
+
+	/* 7.2.2 Colore di default del tab (il tab non è selezionato) */
+	div#page.<nomestile> .block-lista_tab .ui-tabs .ui-tabs-nav li.ui-state-default ,
+	div#page.<nomestile> .block-lista_tab .ui-tabs .ui-tabs-nav li.ui-state-default  a{
+		background-color:<colore 3>;
+	}
+
+	/* 7.2.3 Colore del tab selezionato */
+	div#page.<nomestile> .block-lista_tab .ui-tabs .ui-tabs-nav li.ui-state-active,
+	div#page.<nomestile> .block-lista_tab .ui-tabs .ui-tabs-nav li.ui-state-hover,
+	div#page.<nomestile> .block-lista_tab .ui-tabs .ui-tabs-nav li.ui-state-active a,
+	div#page.<nomestile> .block-lista_tab .ui-tabs .ui-tabs-nav li.ui-state-hover a
+	{
+		background-color:#fff;	
+	}
+
+/* 7.3 Bordi tabs panel */
+div#page.<nomestile> div.box-tabs-panel div.border-mc{
+    background: #fff;
+}
+div#page.<nomestile> div.box-tabs-panel div.border-ml{ background-image: url(images/<nomestile>/tabspanel-ml.gif); }
+div#page.<nomestile> div.box-tabs-panel div.border-mr{ background-image: url(images/<nomestile>/tabspanel-mr.gif); }
+
+/* 7.4 Bordi tabs footer */
+div#page.<nomestile> div.box-tabs-footer div.border-bl{ background-image: url(images/<nomestile>/tabsfooter-bl.gif); }
+div#page.<nomestile> div.box-tabs-footer div.border-br{ background-image: url(images/<nomestile>/tabsfooter-br.gif); }
+div#page.<nomestile> div.box-tabs-footer div.border-bc{ background-image: url(images/<nomestile>/tabsfooter-bc.gif); }
+	
+
+
+/******************************************************************
+8. BOX CERCA
+*/
+div#page.<nomestile> div.block-search div.border-mc{
+    background: <colore 3>;
+}
+div#page.<nomestile> div.block-search div.border-tl{ background-image: url(images/<nomestile>/search-tl.gif); }
+div#page.<nomestile> div.block-search div.border-tr{ background-image: url(images/<nomestile>/search-tr.gif); }
+div#page.<nomestile> div.block-search div.border-tc{ background-image: url(images/<nomestile>/search-tc.gif); }
+div#page.<nomestile> div.block-search div.border-ml{ background-image: url(images/<nomestile>/search-ml.gif); }
+div#page.<nomestile> div.block-search div.border-mr{ background-image: url(images/<nomestile>/search-mr.gif); }
+div#page.<nomestile> div.block-search div.border-bl{ background-image: url(images/<nomestile>/search-bl.gif); }
+div#page.<nomestile> div.block-search div.border-br{ background-image: url(images/<nomestile>/search-br.gif); }
+div#page.<nomestile> div.block-search div.border-bc{ background-image: url(images/<nomestile>/search-bc.gif); }
+
+
+
+/******************************************************************
+9. BOX NUMERI
+*/
+div#page.<nomestile> div.box-numeri div.border-mc{
+    background: <colore 3>;
+}
+div#page.<nomestile> div.box-numeri div.border-tl{ background-image: url(images/<nomestile>/numeri-tl.gif); }
+div#page.<nomestile> div.box-numeri div.border-tr{ background-image: url(images/<nomestile>/numeri-tr.gif); }
+div#page.<nomestile> div.box-numeri div.border-tc{ background-image: url(images/<nomestile>/numeri-tc.gif); }
+div#page.<nomestile> div.box-numeri div.border-ml{ background-image: url(images/<nomestile>/numeri-ml.gif); }
+div#page.<nomestile> div.box-numeri div.border-mr{ background-image: url(images/<nomestile>/numeri-mr.gif); }
+div#page.<nomestile> div.box-numeri div.border-bl{ background-image: url(images/<nomestile>/numeri-bl.gif); }
+div#page.<nomestile> div.box-numeri div.border-br{ background-image: url(images/<nomestile>/numeri-br.gif); }
+div#page.<nomestile> div.box-numeri div.border-bc{ background-image: url(images/<nomestile>/numeri-bc.gif); }
+
+/* Colori dei numeri  */
+
+div#page.<nomestile> div.box-numeri .num-tabs li a 
+{ 
+	border:1px solid <colore 1>;
+	color:<colore 1>;
+	background-color:#fff;
+}
+
+div#page.<nomestile> div.box-numeri .num-tabs li.ui-tabs-selected a,
+div#page.<nomestile> div.box-numeri .num-tabs li.ui-state-active a
+{
+	background:<colore 1>;
+	color:#fff !important;	
+}
+
+div#page.<nomestile> div.box-numeri .num-tabs li.ui-state-hover a
+{
+	background-color:<colore 2>;
+	color:<colore 1>;
+}
+
+
+/******************************************************************
+10. BOX LISTA
+*/
+
+/* 10.1 Prima colonna */
+div#page.<nomestile> div.box-lista div.border-tc,
+div#page.<nomestile> div.box-lista div.border-ml,
+div#page.<nomestile> div.box-lista div.border-mr,
+div#page.<nomestile> div.box-lista div.border-bc,
+div#page.<nomestile> div.box-lista div.border-mc{
+    background: <colore 3>;
+}
+div#page.<nomestile> div.box-lista div.border-tl{ background-image: url(../images/<nomestile>/lista-tl.gif); }
+div#page.<nomestile> div.box-lista div.border-tr{ background-image: url(../images/<nomestile>/lista-tr.gif); }
+div#page.<nomestile> div.box-lista div.border-bl{ background-image: url(../images/<nomestile>/lista-bl.gif); }
+div#page.<nomestile> div.box-lista div.border-br{ background-image: url(../images/<nomestile>/lista-br.gif); }
+div#page.<nomestile> div.block-lista div.border-box div.border-tc ,
+div#page.<nomestile> div.block-lista div.border-box div.border-content  { background-image:url(../images/<nomestile>/lista-bg.gif); }
+
+
+/* 10.2 Seconda colonna */
+div#page.<nomestile> div.box-lista-2 div.border-tc,
+div#page.<nomestile> div.box-lista-2 div.border-ml,
+div#page.<nomestile> div.box-lista-2 div.border-mr,
+div#page.<nomestile> div.box-lista-2 div.border-bc,
+div#page.<nomestile> div.box-lista-2 div.border-mc{
+    background: <colore 3>;
+}
+div#page.<nomestile> div.box-lista-2 div.border-tl{ background-image: url(../images/<nomestile>/lista-2-tl.gif); }
+div#page.<nomestile> div.box-lista-2 div.border-tr{ background-image: url(../images/<nomestile>/lista-2-tr.gif); }
+div#page.<nomestile> div.box-lista-2 div.border-bl{ background-image: url(../images/<nomestile>/lista-2-bl.gif); }
+div#page.<nomestile> div.box-lista-2 div.border-br{ background-image: url(../images/<nomestile>/lista-2-br.gif); }
+div#page.<nomestile> div.block-lista-2 div.border-box div.border-tc ,
+div#page.<nomestile> div.block-lista-2 div.border-box div.border-content { background-image:url(../images/<nomestile>/lista-2-bg.gif); }
+
+/* 10.3 Terza colonna */
+div#page.<nomestile> div.box-lista-3 div.border-tc,
+div#page.<nomestile> div.box-lista-3 div.border-ml,
+div#page.<nomestile> div.box-lista-3 div.border-mr,
+div#page.<nomestile> div.box-lista-3 div.border-bc,
+div#page.<nomestile> div.box-lista-3 div.border-mc{
+    background: <colore 3>;
+}
+div#page.<nomestile> div.box-lista-3 div.border-tl{ background-image: url(../images/<nomestile>/lista-3-tl.gif); }
+div#page.<nomestile> div.box-lista-3 div.border-tr{ background-image: url(../images/<nomestile>/lista-3-tr.gif); }
+div#page.<nomestile> div.box-lista-3 div.border-bl{ background-image: url(../images/<nomestile>/lista-3-bl.gif); }
+div#page.<nomestile> div.box-lista-3 div.border-br{ background-image: url(../images/<nomestile>/lista-3-br.gif); }
+div#page.<nomestile> div.block-lista-3 div.border-box div.border-tc ,
+div#page.<nomestile> div.block-lista-3 div.border-box div.border-content  { background-image:url(../images/<nomestile>/lista-3-bg.gif); }
+
+
+
+/******************************************************************
+11. BOX ALLEGATI
+*/
+
+/* 11.1 Allegati Header */
+div#page.<nomestile> div.box-allegati-header div.border-mc{
+    background: #CB91F1;
+}
+div#page.<nomestile> div.box-allegati-header div.border-tl{ background-image: url(images/<nomestile>/allegatiheader-tl.gif); }
+div#page.<nomestile> div.box-allegati-header div.border-tr{ background-image: url(images/<nomestile>/allegatiheader-tr.gif); }
+div#page.<nomestile> div.box-allegati-header div.border-tc{ background-image: url(images/<nomestile>/allegatiheader-tc.gif); }
+div#page.<nomestile> div.box-allegati-header div.border-ml{ background-image: url(images/<nomestile>/allegatiheader-ml.gif); }
+div#page.<nomestile> div.box-allegati-header div.border-mr{ background-image: url(images/<nomestile>/allegatiheader-mr.gif); }
+
+/* 11.2 Allegati Content */
+div#page.<nomestile> div.box-allegati-content div.border-mc{
+    background: #fff;
+}
+div#page.<nomestile> div.box-allegati-content div.border-ml{ background-image: url(images/<nomestile>/allegaticontent-ml.gif); }
+div#page.<nomestile> div.box-allegati-content div.border-mr{ background-image: url(images/<nomestile>/allegaticontent-mr.gif); }
+div#page.<nomestile> div.box-allegati-content div.border-bl{ background-image: url(images/<nomestile>/allegaticontent-bl.gif); }
+div#page.<nomestile> div.box-allegati-content div.border-br{ background-image: url(images/<nomestile>/allegaticontent-br.gif); }
+div#page.<nomestile> div.box-allegati-content div.border-bc{ background-image: url(images/<nomestile>/allegaticontent-bc.gif); }
+
+
+
+/******************************************************************
+12. BOX COMMENTI
+*/
+div#page.<nomestile> div.box-comment div.border-tc,
+div#page.<nomestile> div.box-comment div.border-ml,
+div#page.<nomestile> div.box-comment div.border-mr,
+div#page.<nomestile> div.box-comment div.border-bc,
+div#page.<nomestile> div.box-comment div.border-mc{
+    background: <colore 3>;
+}
+
+div#page.<nomestile> div.box-comment div.border-tl{ background-image: url(images/<nomestile>/lista-tl.gif); }
+div#page.<nomestile> div.box-comment div.border-tr{ background-image: url(images/<nomestile>/lista-tr.gif); }
+div#page.<nomestile> div.box-comment div.border-bl{ background-image: url(images/<nomestile>/lista-bl.gif); }
+div#page.<nomestile> div.box-comment div.border-br{ background-image: url(images/<nomestile>/lista-br.gif); }
+
+
+
+/******************************************************************
+13. RIGHE ALTERNATE CONTENUTO
+*/
+div#page.<nomestile> div.col-odd {
+	background-color:#fff;
+}
+
+div#page.<nomestile> div.col-even {
+	background-color:#f3f3f3;
+}
+
+
+
+/******************************************************************
+14. LOGO
+Usare se si vuole modificare il colore caratteristico del bordo del logo. 
+Per coerenza si consiglia di configurare questo colore anche per la regole 4.2
+*/
+
+div#page.<nomestile> div#logo
+{
+    border-color:<colore 2>
+}
+
+
+
+/******************************************************************
+15. COLORE LINK
+Usare se si vuole modificare il colore predefinito di tutti i link.
+La regola viene recepita solo dai contenuti effettivi della pagina (#columns-position)
+
+div#page.<nomestile> #columns-position a {
+	color:#0051A1;
+}
+*/ 
+
+/******************************************************************
+16. COLORE TITOLI
+Usare se si vuole modificare il colore predefinito di tutti i titoli H1 e H2.
+*/ 
+
+/* 16.1 Titoli principali (h1) */
+div#page.<nomestile> div.global-view-full h1, 
+div#page.<nomestile> div.attribute-header h1, 
+div#page.<nomestile> div.attribute-header h1.long {
+	color:<colore 1>;
+	border-bottom:3px solid #EFEFEF;
+	font-weight:normal;
+}
+
+/* 16.2 Titoli extrainfo (h2) */
+div#page.<nomestile> .block-title ,
+div#page.<nomestile>  #extrainfo h2.block-title {
+	color:<colore 1>;
+	font-weight:normal;
+	font-size:1.4em;
+}
+div#page.<nomestile> h2.block-title a {
+	background-image:url(images/<nomestile>/arrows.gif);
+	background-position:right 4px;
+	color:<colore 1>;
+	
+}
+
+/******************************************************************
+17. PUNTI ELENCO
+Usare se si vuole modificare il colore predefinito dei punti elenco (UL LI).
+I punti elenco per qustioni di compatibiltà crossbrowser sono gestiti da immagini.
+*/ 
+div#page.<nomestile>  li {	
+	background-image:url(images/<nomestile>/list.gif);
+	background-repeat:no-repeat;
+}

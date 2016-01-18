@@ -1,0 +1,71 @@
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul.comune
+{
+    width: 33.32%;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-3 ul, 
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-6 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-9 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-12 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-15 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-18 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-21 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-24 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-27 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-30 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-33 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-36 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-39 ul
+{
+    border: medium none;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-4 ul, 
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-8 ul
+{
+    border-right: 1px dotted #333333;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul ul
+{
+    border-right: 1px dotted #333333;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel ul
+{
+    width: 30%;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel .menu-preview
+{
+    width: 70%;
+}
+
+div#footer-menu ul
+{
+    padding: 0 3px;
+}
+
+#footer-menu ul.itemlist-1 li.odd
+{
+    float: left;
+    clear: left;
+    width: 50%;
+}
+
+#footer-menu ul.itemlist-1 li.odd a
+{
+    padding-right: 2px;
+}
+
+#footer-menu ul.itemlist-1 li.even
+{
+    float: right;
+    clear: right;
+    width: 50%;
+}
+
+#footer-menu ul.itemlist-1 li.even a
+{
+    padding-left: 2px;
+}

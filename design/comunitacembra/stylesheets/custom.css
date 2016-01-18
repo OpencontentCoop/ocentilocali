@@ -1,0 +1,48 @@
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul.comune
+{
+    width: 50%;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-2 ul, 
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-4 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-6 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-8 ul
+{
+    border: medium none;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul ul
+{
+    border-right: 1px dotted #333333;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel ul
+{
+    width: 30%;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel .menu-preview
+{
+    width: 70%;
+}
+
+div#logo
+{
+     width: 375px;
+}
+
+div#logo h1
+{
+     width: 355px;
+}
+
+div#logo span.logo-portale,
+div#logo span.sitename 
+{
+    width: 210px;
+}
+
+div#logo span.logo-portale
+{
+    margin:50px 0 0;
+}

@@ -1,0 +1,1330 @@
+body
+{
+    background: url("../images/entilocali/body-bg.jpg") repeat-x scroll center top #D2D3D7;
+}
+
+div#page
+{
+    width: 100%; /* This can be changed to any fixed width if desired */
+    margin: 0 auto 0 auto; /* General method for centering content if fixed page width, for other browsers than IE */
+    text-align: left; /* Reset IE method for centering page, to stop all other content on the page from centering */
+    border-top:30px solid #000;
+    background:url( ../images/entilocali/default-page-bg.jpg ) center -34px;
+    background-repeat:no-repeat;
+}
+
+div.width-layout
+{
+	width: 970px;
+}
+
+div#page-content-position
+{
+	text-align:center;
+}
+
+div#page-content
+{
+    margin: 0 auto;
+    text-align: left;
+	position:relative;
+    z-index:96;
+}
+
+div#page-title
+{
+    background:url( ../images/entilocali/title-bg.png ) repeat;
+    color:#fff;
+    font-family: League_Gothic;
+    margin: 0 auto;
+    font-size:30px;
+    text-align:left;
+    text-indent:10px;
+    padding:6px 0;
+    letter-spacing: 0.8px;
+}
+
+/* HEADER */
+
+div#header-position
+{
+	text-align:center;
+    margin-top:-20px;
+}
+
+div#header
+{
+    margin: 0 auto;
+    text-align: left;
+    position:relative;
+    z-index:95;
+}
+
+div#header.zindex
+{
+    z-index:1000; 
+}
+
+div#header ul
+{
+    margin: 0;
+    padding: 0.25em 0 0.25em 0;
+}
+
+div#header ul li
+{
+    padding: 0;
+    display: inline;
+    margin-left: 1em;
+    background-image: none;
+}
+
+div#logo
+{
+    float: left;
+    margin: 0;
+    width:300px;
+    height:250px;
+    border-top:5px solid #154985;    
+}
+
+div#logo .border-content
+{
+    height:180px;
+    position:relative;
+    padding:0;
+}
+
+div#logo h1
+{
+	margin:0;
+	padding:0;
+	color:#fff;
+    font-family: League_Gothic;
+    letter-spacing: 0.8px;
+    font-size:16px;
+    position:absolute;
+    bottom:0;
+    padding:10px;
+    line-height: 1.1;
+    width:276px;
+}
+
+div#logo h1 a
+{
+	color:#fff;
+	text-decoration:none;
+	display:block;
+    font-size:28px;
+    cursor:pointer
+}
+
+div#logo span.logo-portale
+{
+    margin:30px 0 0;
+    display: block;
+    text-align:right;
+    width:136px;
+    float:right;
+}
+
+div#logo span.logo
+{
+    float:left;
+    text-align:center;
+    width:140px;
+}
+
+div#logo span.sitename
+{
+    float:right;
+    width:136px;
+    text-align:right;
+    clear:right;
+    cursor:pointer
+}
+
+div#links
+{
+    text-align: right;
+    font-size: 0.85em;
+    float:right;
+	min-height: 27px;
+	height: auto !important;
+	height: 27px;
+    padding-left:6px;
+    background:url( ../images/entilocali/links-l.png ) no-repeat center left;
+    margin: 35px 0 15px;
+}
+
+div#links-design
+{
+	margin:0;
+	padding:0 6px 0 0;
+    background:url( ../images/entilocali/links-r.png ) no-repeat center right;
+}
+
+div#links ul
+{
+	padding:0;
+    background:#666;
+    height: 27px;
+    margin: 0 -1px;
+}
+
+div#links ul li
+{
+    display: inline;
+	background:none !important;
+    padding:0;
+    margin:0 0 0 0.5em;
+	line-height:26px;
+}
+
+div#links ul li a
+{
+    color: #fff;
+    text-decoration: none;
+	padding:0 0.5em 0 0;
+	border-right:1px solid #fff;
+}
+
+div#links ul li.lastli a
+{
+    border:none;
+}
+
+div#links div.accessibilita
+{
+	width:110px;
+	float:right;
+	padding:3px 4px 0 0;
+	height:20px;
+	overflow:hidden;
+}
+
+div#links div.accessibilita span
+{
+	display:none;
+}
+
+div#links div.accessibilita a,
+div#links div.accessibilita a:hover
+{
+	border-right:none;
+	padding:0 0 0 18px;
+	margin-right:2px;
+	display:block;
+	height:18px;
+	line-height:18px;
+	width:0;
+	float:left;
+	overflow:hidden;
+	text-decoration: none;
+	white-space:nowrap;
+	border:1px solid #fff;
+}
+
+div#links div.accessibilita a.access_selected
+{
+	border:1px solid #ccc;
+}
+
+div#links div.accessibilita a#normale
+{
+	display:none;
+}
+
+div#links a#riduci-caratteri
+{
+	background:transparent url("../images/accessibilita/riduci-caratteri.jpg") no-repeat center left;
+}
+div#links a#aumenta-caratteri
+{
+	background:transparent url("../images/accessibilita/aumenta-caratteri.jpg") no-repeat center left;
+}
+div#links a#alto-contrasto
+{
+	background:transparent url("../images/accessibilita/alto-contrasto.jpg") no-repeat center left;
+}
+
+div#links a#layout-fluido
+{
+	background:transparent url("../images/accessibilita/layout-fluido.jpg") no-repeat center left;
+}
+
+div#links a#layout-rigido
+{
+	background:transparent url("../images/accessibilita/layout-rigido.jpg") no-repeat center left;
+}
+
+div#print-version {
+	background:transparent url("../images/print.png") no-repeat center left;
+	padding: 10px 10px 10px 40px;
+}
+
+div#searchbox
+{
+    position: absolute;
+    right: 0;
+    top: -120px;
+    width:503px;
+    height:100px;
+    background:transparent url("../images/entilocali/search-bg.png") no-repeat center center;
+    z-index:90;
+}
+
+div#searchbox fieldset
+{
+    padding: 37px 20px;
+    text-align:center
+}
+
+#searchbox form
+{
+
+}
+
+input#searchbox_text
+{
+    margin:0;
+    width:335px;
+    padding:3px 5px;
+    font-size:18px;
+    border:none;
+    margin-right:15px;
+    vertical-align:middle;
+}
+
+input#searchbox_text:focus
+{
+
+}
+
+#searchbox button#searchbox_submit 
+{
+    background-position:bottom center;
+    background-repeat:repeat-x;
+    background-image: url( ../images/entilocali/button-bg.jpg );
+    background-color: #91CE55;
+    color:#fff;
+	border:1px solid #78B63A;
+    border-radius:6px;
+    font-size:18px;
+    paddding:5px 18px;
+    vertical-align:middle;
+    margin:0;
+}
+
+/* TOPMENU */
+div#topmenu
+{
+    float:right;
+    padding-left:10px;
+    background:url( ../images/topmenu/menu-l.png ) no-repeat top left;
+    position:absolute;
+    right:0;
+    top: 77px;
+}
+
+div#topmenu-image
+{
+	margin: 0;
+	padding-right:10px;
+    background:url( ../images/topmenu/menu-r.png ) no-repeat top right;
+}
+
+div#topmenu-position
+{
+    background:url( ../images/topmenu/menu-c.png ) repeat-x;
+}
+
+div#topmenu ul
+{
+	margin: 0;
+	padding:0;
+    white-space:nowrap;
+}
+
+div#topmenu ul li
+{
+    background-image: none;
+    display:inline-block;
+    padding: 0;
+    margin: 0;
+    line-height: normal;
+	text-align:center;
+}
+
+div#topmenu ul#topmenu-firstlevel li
+{
+    width:auto;
+}
+
+div#topmenu ul#topmenu-firstlevel div
+{
+
+}
+
+div#topmenu ul#topmenu-firstlevel li a
+{
+    font-family: League_Gothic;
+    letter-spacing: 0.5px;
+    padding:0 10px;
+    line-height:32px;
+    color:#000;
+    display: inline-block;
+    text-decoration:none;
+}
+
+div#topmenu ul#topmenu-firstlevel li a span
+{
+}
+
+div#topmenu ul#topmenu-firstlevel li.lastli a span
+{
+}
+div#topmenu ul#topmenu-firstlevel li.hover a span,
+div#topmenu ul#topmenu-firstlevel li ul.secondlevel div,
+div#topmenu ul#topmenu-firstlevel li ul.secondlevel li a span,
+div#topmenu ul#topmenu-firstlevel li a:hover span,
+div#topmenu ul#topmenu-firstlevel li.selected a span
+{
+}
+
+div#topmenu ul#topmenu-firstlevel li.hover a,
+div#topmenu ul#topmenu-firstlevel li a:hover,
+div#topmenu ul#topmenu-firstlevel li.selected a
+{
+    background-color:#222;
+    color:#fff;
+}
+
+div#topmenu ul#topmenu-firstlevel li.hover a,
+div#topmenu ul#topmenu-firstlevel li a:hover
+{
+    margin-bottom: 12px;
+}
+
+div#topmenu ul#topmenu-firstlevel li.hover
+{
+    background-image: url( ../images/entilocali/menu-hover.png );
+    background-repeat: no-repeat;
+    background-position:center 32px;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel
+{
+	display:none;
+	background:#fff;
+    /*opacity:0.8;*/
+	border-top:9px solid #154985;
+	position:absolute;
+	margin:-2px 0 0 0;
+	z-index:100;	    
+	width:150%;
+	left:-50%;
+	padding:0;
+	text-align:left;
+    white-space:normal;
+    padding:0;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul
+{
+    width:25%;
+    margin-bottom:5px;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul ul
+{
+    border-right: 1px dotted #333;
+    width: 85%;
+    font-size:0.9em;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-4 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-8 ul
+{
+    border:none;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul ul li
+{
+    margin-bottom:0;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel-design
+{
+    padding:10px 15px 10px;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel ul
+{
+    white-space:normal;
+    width:20%;
+    float:left;
+}
+
+div#topmenu ul#topmenu-firstlevel li#menu-aree-tematiche div.secondlevel ul
+{
+    width:100%;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel .menu-preview
+{
+    width:80%;
+    float:left;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel .menu-preview .menu-preview-design
+{
+    padding:0 0 0 10px;
+    margin-left:10px;
+    border-left:1px dotted #333;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel .menu-preview .menu-preview-design *
+{
+    font-size:1em;
+    letter-spacing:normal;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel .menu-preview .menu-preview-design a
+{
+    font-family:Arial,Helvetica,sans-serif;
+    background:none;
+    color:#333;
+    padding:0;
+    line-height:normal;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel ul li,
+div#topmenu ul#topmenu-firstlevel li.aree-tematiche div.secondlevel ul li
+{
+	background:none;
+	background-image:none;
+	padding:0;
+	margin-bottom:5px;
+    display:block;
+    text-align:left;
+}
+
+div#topmenu ul#topmenu-firstlevel ul.thirdlevel li 
+{
+    display:none;
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel ul li a
+{
+	font-size:1em;
+    text-decoration: none;
+	text-transform:none;
+	font-weight:normal;
+    display: inline;
+    line-height:normal;
+	padding:0;
+	margin:0;	
+	text-align:left;
+	color:#154985;
+	border:none;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#fff;
+    letter-spacing:normal;
+}
+
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel ul li a:hover
+{
+}
+
+div#topmenu ul#topmenu-firstlevel div.secondlevel ul li div
+{
+	padding:0;
+}
+
+div#topmenu ul#topmenu-firstlevel div.hover
+{
+	display:block;
+}
+
+#page div#topmenu ul#topmenu-firstlevel h2,
+#page div#topmenu ul#topmenu-firstlevel h2 a
+{
+    color:#154985;
+    font-weight: bold;
+    font-size:1em;
+}
+
+
+/* PATH */
+div#virtual-path,
+div#path
+{
+    padding: 0;
+    background:url( ../images/entilocali/title-bg.png ) repeat;
+    color:#fff;
+    margin: 0 auto;
+    text-align:left;
+    text-indent:10px;
+    padding:6px 0;
+    font-size:.875em;
+}
+
+div#virtual-path p,
+div#path p
+{
+    height: 1%; /* Preventing margins on content from breaking the box (for IE) */
+    position: relative; /* Fix for IE */
+    margin: 0;
+	line-height:23px;
+}
+
+div#virtual-path p:before, div#virtual-path p:after,
+div#path p:before, div#path p:after /* Preventing margins on content from breaking the box */
+{
+    content: "-";
+    height: 0;
+    visibility: hidden;
+    display: block; 
+    clear: both; 
+}
+
+div#virtual-path  a,
+div#path a
+{
+    color: #fff;
+    display: block;
+    float: left;
+}
+
+div#virtual-path  a:hover,
+div#path a:hover
+{
+	color:#fff;
+	text-decoration:none;
+}
+
+div#virtual-path span.path-text,
+div#path span.path-text
+{
+    color: #fff;
+    display: block;
+    float: left;
+    text-decoration: none;
+}
+
+div#virtual-path span.path-separator,
+div#path span.path-separator
+{
+    color: #fff;
+    display: block;
+    float: left;
+}
+
+div#virtual-path 
+{
+	margin:-20px 10px 10px -11px;
+	position:relative;
+}
+/* SIDE MENU */
+
+div#sidemenu-position
+{
+    width: 16em;
+    margin-left: -16em;
+    float: left;
+    display: inline; /* Fix for IE double margin bug */
+}
+
+div#sidemenu
+{
+    padding: 0.5em 0.75em 0.5em 0.2em;
+}
+
+div.nosidemenu div#sidemenu-position
+{
+    display: none;
+}
+
+div#sidemenu ul
+{
+    list-style-type: none;
+    margin: 0;
+}
+
+div#sidemenu ul li
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    list-style-image: none;
+    background-image: none;
+	background-color: #fff;
+}
+
+div#sidemenu ul.menu-list ,
+div#sidemenu ul.submenu-list,
+div#sidemenu ul.submenu-list-3,
+div#sidemenu ul.submenu-list-4
+{
+    list-style-type: none;
+	margin:0;
+}
+
+div#sidemenu ul li div
+{
+	border-top:1px solid #fff;
+	border-bottom:1px solid #fff;
+	clear:both;
+	height:1%;
+}
+
+div#sidemenu ul li div:after /* Terminate floating elements flow */
+{
+    content: "-";
+    height: 0;
+    font-size: 0;
+    visibility: hidden;
+    display: block;
+    clear: both;
+}
+
+div#sidemenu ul li div a
+{
+	display:block;
+	float:left;
+	width:100%;
+	padding:0;
+}
+
+.no-js div#sidemenu ul ul li div a
+{
+	text-indent:8px;
+}
+
+div#sidemenu ul li div a span
+{
+	display:block;
+	padding-left:3px;
+}
+
+body.no-js div#page div#sidemenu ul li div a span.handler
+{
+	cursor:auto;
+}
+
+div#sidemenu  a.current
+{
+    font-weight: bold;
+	background-color:#154985;
+	color:#fff;
+}
+
+div#sidemenu a
+{
+    font-size: 1em;
+	color:#515151;
+	cursor:pointer;
+}
+
+div.second_level_menu
+{	
+	line-height:25px;
+	padding-left:15px;
+	background-color:#e7e7e7;
+}
+div.second_level_menu span.handler
+{
+	position:relative;
+	margin-left:-15px;
+	width:15px;
+	height:25px;
+}
+
+div.third_level_menu
+{
+	background-color:#efefef;
+	line-height:20px;
+	font-size: 0.94em;
+	padding-left:27px;
+	
+}
+
+div.third_level_menu span.handler
+{
+	position:relative;
+	margin-left:-11px;
+	width:11px;
+	height:20px;
+}
+
+div.fourth_level_menu
+{
+	background-color:#f3f3f3;
+	line-height:20px;
+	font-size: 0.90em;
+	padding-left:37px;
+}
+
+div.fourth_level_menu span.handler
+{
+	position:relative;
+	margin-left:-11px;
+	width:11px;
+	height:20px;
+}
+
+div.fifth_level_menu
+{
+	background-color:#f7f7f7;
+	line-height:20px;
+	font-size: 0.89em;
+	padding-left:37px;	
+}
+
+div#sidemenu  div.fifth_level_menu a  span{ padding-left:14px; }
+div#sidemenu  div.fifth_level_menu a.current{}
+
+div#sidemenu ul li div span.handler
+{
+	background-color:#154985;
+    display:block;
+	float:left;
+	position:relative;
+	padding:0;
+	opacity:0;
+	display:inline;
+}
+
+div#sidemenu ul li div span.activable{
+	cursor:pointer;
+	background-color:transparent !important;
+	background-image:url("../images/bullet/menu_bullets.gif");
+	background-position:-7px center;
+	background-repeat:no-repeat;
+	opacity:1;
+}
+
+div#sidemenu ul li div span.selected{
+	cursor:pointer;
+	opacity:0.4;
+}
+
+div#sidemenu ul li div span.selected-activable
+{
+	cursor:pointer;
+	background-image:url("../images/bullet/menu_bullets.gif");
+	background-position:4px center;
+	background-repeat:no-repeat;
+}
+
+div#sidemenu ul li div span.active
+{
+	background-image:url("../images/bullet/menu_bullets.gif");
+	background-position:-19px center;
+	background-repeat:no-repeat;
+	opacity:1;
+}
+
+div#sidemenu ul li div.second_level_menu span.activable
+{
+	background-position: -5px center;
+}
+
+div#sidemenu ul li div.second_level_menu span.active
+{
+	background-position: -17px center;
+}
+
+div#sidemenu ul li div.second_level_menu span.selected-activable
+{
+	background-position: 6px center;
+}
+
+div#sidemenu div.box div.box-content
+{
+    padding-left: 0.75em;
+    padding-right: 0;
+}
+
+div#sidemenu h3
+{
+    display:none;
+	margin: 0;
+}
+
+
+/* CONTENTSTRUCTURE */
+
+div#sidemenu div.contentstructure ul li a
+{
+    border: none;
+}
+
+div#sidemenu div.contentstructure ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+div#sidemenu div.contentstructure ul ul
+{
+    margin: 0.25em 0 0 0.5em;
+}
+
+div#sidemenu div.contentstructure ul ul ul
+{
+    margin: 0 0 0 1em;
+}
+
+div#sidemenu div.contentstructure li
+{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-image: url(../images/sidemenu/left-line.gif);
+    background-repeat: repeat-y;
+    background-position: left;
+}
+
+div#sidemenu div.contentstructure ul ul div
+{
+    color: #000000;
+    text-decoration: none;
+    padding: 2px 0 2px 0;
+}
+
+div#sidemenu div.contentstructure li div a
+{
+    font-size: 0.9em;
+    text-decoration: none;
+    color: #000;
+    padding: 0 2px 0 4px;
+}
+
+div#sidemenu div.contentstructure li.topchapter, div#sidemenu div.contentstructure li.topchapter-selected
+{
+    font-weight: bold;
+    margin: 0.5em 0 0.5em 0;
+    padding-left: 10px;
+    background-image: url(../images/sidemenu/linklist-bullet.gif);
+    background-repeat: no-repeat;
+    background-position: 0 0.4em;
+}
+
+div#sidemenu div.contentstructure li.topchapter-selected a
+{
+    color: #000;
+    text-decoration: none;
+}
+
+div#sidemenu div.contentstructure li.currentnode a:hover
+{
+
+}
+
+div#sidemenu div.contentstructure li.topchapter-selected li a
+{
+    font-weight: bold;
+    color: #328F00;
+    text-decoration: none;
+}
+
+div#sidemenu div.contentstructure li.topchapter-selected li a:hover
+{
+
+}
+
+div#sidemenu div.contentstructure li.topchapter-selected li li a
+{
+    color: #0090FF;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+div#sidemenu div.contentstructure li.topchapter-selected a:hover
+{
+
+}
+
+div#sidemenu div.contentstructure li
+{
+    font-weight: normal;
+}
+
+div#sidemenu div.contentstructure li ul div
+{
+    background-image: url(../images/sidemenu/left-item.gif);
+    background-repeat: no-repeat;
+    background-position: top left;
+    padding-left: 8px;
+}
+
+div#sidemenu div.contentstructure li div.first
+{
+    background-image: url(../images/sidemenu/left-corner-top.gif);
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+div#sidemenu div.contentstructure li.last
+{
+    background-image: url(../images/sidemenu/left-corner-end.gif);
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+div#sidemenu div.contentstructure li.currentnode a, div#sidemenu div.contentstructure li.topchapter-selected li.currentnode a
+{
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+div#sidemenu div.contentstructure li.topchapter-selected li.currentnode ul a
+{
+    font-weight: normal;
+    text-decoration: none;
+}
+
+div#sidemenu div.contentstructure li div a:hover, div#sidemenu div.contentstructure li.topchapter-selected li.currentnode ul a:hover
+{
+
+}
+
+/* TOOLBAR */
+
+div#toolbar
+{
+    margin: 0 auto;
+}
+
+/* COLUMNS */
+
+div#columns-position
+{
+   margin: 0 auto 0 auto;
+}
+
+div.columns-ml
+{
+    background: #FFF;
+	background-image:none;
+}
+
+div.columns-mr
+{
+    background: #FFF;
+	background-image:none;
+    padding: 0 2px;
+}
+
+div.columns-mc
+{
+    background: #fff;
+    padding: 0;
+}
+
+div.columns-bl
+{
+    background-image: url(../images/borders/box-trans-white/border-bl.gif);
+    background-position: left bottom;
+    background-repeat: no-repeat;
+}
+
+div.columns-br
+{
+    background-image: url(../images/borders/box-trans-white/border-br.gif);
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    padding: 0 4px;
+}
+
+div.columns-bc
+{
+    background: #FFF;
+	background-image:none;
+    background-position: left bottom;
+    background-repeat: repeat-x;
+    font-size: 0;
+    height: 4px;
+}
+
+div.columns-content
+{
+    padding: 5px;
+}
+
+div.comunita div.columns-ml,
+div.comunita div.columns-mr,
+div.comunita div.columns-mc,
+div.comunita div.columns-bl,
+div.comunita div.columns-br,
+div.comunita div.columns-bc,
+div.comunita  div.columns-content
+{
+    background:none;
+    padding:0;
+    height:0;
+}
+
+
+
+div#columns
+{
+   padding: 0 250px 0 16em;
+background:#fff;   
+}
+
+div.nosidemenu div#columns
+{
+   padding-left: 0;
+}
+
+div.noextrainfo div#columns
+{
+   /*padding-right: 10px;*/
+   padding-right: 0;
+}
+
+div.noextrainfo div.frontpage  div#columns
+{
+   padding-right: 0;
+}
+
+
+/* MAIN AREA */
+
+div#main-position
+{
+    width: 100%;
+    float: left;
+}
+
+div#main
+{
+    position: relative;
+	padding:10px 0;
+}
+
+div.nosidemenu div#main-position
+{
+    margin-left: 0;
+}
+
+div.noextrainfo div#main-position
+{
+    margin-right: 0;
+}
+
+div.noextrainfo div#main
+{
+}
+
+/* EXTRA CONTENT */
+
+div#extrainfo-position
+{
+    width: 250px;
+    margin-right: -250px;
+    float: left;
+}
+
+div.noextrainfo div#extrainfo-position
+{
+    display: none;
+}
+
+div#extrainfo
+{
+    padding:10px;
+}
+
+/* FOOTER */
+
+div#footer
+{
+    clear: both; /* Ensures that the footer is pushed properly below the columns */
+    text-align: center;
+    margin: 1em auto 0;
+    background-color:#222;
+}
+
+div#footer div#footer-design
+{
+    padding: 1.25em;
+    text-align: center;
+    font-size: 1em;
+    color: #fff;
+    margin: 0 auto;
+}
+
+div#footer-design a
+{
+	color: #fff;
+	text-decoration: underline;
+}
+
+div#footer-info
+{
+    width:30%;
+    float:left;
+}
+
+div#footer-info-design
+{
+    text-align:left;
+    padding-left:10%;
+    margin-left:10%;
+    border-left:1px solid #999;
+}
+
+div#footer-info-design *
+{
+    font-size:.9em;
+    color:#999;
+}
+
+div#footer-info-design h3
+{
+    color:#fff;
+}
+
+
+div#footer-menu
+{
+    text-align:left;
+    font-size:.9em;
+    width:70%;
+    float:left;
+}
+
+div#footer-menu a
+{
+    text-decoration:none;
+}
+
+div#footer-menu ul
+{
+    text-align:left;
+    margin:0;
+}
+
+div#footer-menu ul li
+{
+    background:none;
+    padding:0;
+    margin:0 0 .4em;;
+}
+
+
+div#footer-menu ul li a
+{
+    color:#999;
+}
+
+div#footer-menu p
+{
+    margin-top:0;
+}
+
+div#footer address
+{
+    font-style:normal;
+}
+
+/* AIUTACI A MIGLIORARE */
+div#valutazione-position
+{
+	padding:0;
+	margin:0.5em auto 0;
+}
+
+div#valutazione-position legend
+{
+	color:#3F6AB4;
+	font-size:1.3em;
+	font-weight:bold;
+	padding:0;
+}
+
+div#valutazione
+{
+	background: #E2EAF5; 
+	color: #333;
+	padding:15px;
+}
+
+div#valutazione label.grouplabel,
+div#valutazione span.grouplabel
+{
+	float:left;
+	width:30%;
+	display:block;
+	font-weight:bold;
+}
+
+div#valutazione label
+{
+	display:inline;
+	font-weight:normal;
+}
+
+div#valutazione input.halfbox
+{
+	width:40%;
+}
+
+div#valutazione input.defaultbutton
+{
+	margin-bottom:0;
+}
+
+ul.w3c-conformance li
+{
+	background:none !important;
+	display:inline;
+}
+
+ul.w3c-conformance li a
+{
+    text-decoration:none !important;
+}
+
+
+/* Dimensioni statiche di alcuni font per evitare disastri di layout con l'aumento delle dimensioni generali dei caratteri */
+
+#page a span.arrows-blue-r,
+#page div.border-bottom-content a span.arrows-blue-r,
+#page div.block-type-lista div.border-content a span.arrows-blue-r,
+#page .block-lista_tab .ui-tabs .ui-tabs-nav li a
+{
+    font-size: 14px;
+}
+
+#page .block-title
+{
+    font-size:25px;
+}
+
+#page .extrainfo-column .block-title,
+#page #extrainfo .block-title,
+#page #extrainfo legend.block-title
+{
+    font-size: 25px;
+}
+
+div#topmenu ul#topmenu-firstlevel ul.secondlevel li a
+{
+	font-size:12px;
+}
+
+div#topmenu ul#topmenu-firstlevel li a
+{    
+	font-size:22px;
+}
+
+div#links .current_siteaccess a
+{
+    text-decoration: underline;
+}

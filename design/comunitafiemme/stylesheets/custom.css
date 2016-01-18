@@ -1,0 +1,26 @@
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul.comune
+{
+    width: 33.32%;
+}
+
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-3 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-6 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-9 ul,
+div#topmenu ul#topmenu-firstlevel div#menu-comuni ul li.item-11 ul
+{
+    border: medium none;
+}
+
+
+div#logo
+{
+    width: 400px;
+}
+
+div#logo h1 {
+    width: 369px;
+}
+
+div#logo span.sitename {
+    width: 180px;
+}

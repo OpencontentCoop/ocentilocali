@@ -1,0 +1,20 @@
+div#page-title,
+div#logo h1,
+div#topmenu ul#topmenu-firstlevel li a,
+div.global-view-full h1, 
+div.attribute-header h1, 
+div.attribute-header h1.long,
+h2.block-title,
+#page .extrainfo-column .block-title,
+#page #extrainfo .block-title,
+#page #extrainfo legend.block-title,
+h2.block-title a
+{
+    font-family: OSPDIN;
+    letter-spacing:normal !important;
+}
+
+#map_filters li input
+{
+    display:none;
+}

@@ -1,0 +1,8 @@
+div#topmenu ul#topmenu-firstlevel div.secondlevel .menu-preview
+{
+    width: 70%;
+}
+div#topmenu ul#topmenu-firstlevel div.secondlevel ul
+{
+    width: 30%;
+}
