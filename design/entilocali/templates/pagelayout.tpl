@@ -3,15 +3,16 @@
 <head>
 {set $current_user = fetch( 'user', 'current_user' )}
 {def $user_hash = concat( $current_user.role_id_list|implode( ',' ), ',', $current_user.limited_assignment_value_list|implode( ',' ) )
-     $is_login_page = cond( and( module_params()['module_name']|eq( 'user' ), module_params()['function_name']|eq( 'login' ) ), true(), false() ) }
+     $is_login_page = cond( and( module_params()['module_name']|eq( 'user' ), module_params()['function_name']|eq( 'login' ) ), true(), false() )
+     $cookies = check_and_set_cookies()}
 
 
 {if is_set( $extra_cache_key )|not}
     {def $extra_cache_key = ''}
 {/if}
 
+{cache-block expiry=86400 keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key, $cookies|implode(',') )}
 {def $browser          = checkbrowser('checkbrowser')
-     $cookies          = check_and_set_cookies()
      $pagedata         = ezpagedata()
      $pagestyle        = $pagedata.css_classes
      $locales          = fetch( 'content', 'translation_list' )
@@ -19,12 +20,9 @@
      $current_node_id  = $pagedata.node_id
      $main_style       = get_main_style()
      $custom_keys      = hash( 'is_login_page', $is_login_page, 'browser', $browser, 'is_area_tematica', is_area_tematica() )|merge( $cookies )
-     $ente             = entelocale_node()
-     $ente_cache_key   = cond( $ente, $ente.object.modified, '' )
+     $ente             = $pagedata.homepage
      $background       = entelocale_background()
 }
-
-{set scope=global custom_keys=$custom_keys}
 
 {include uri='design:page_head.tpl'}
 
@@ -49,9 +47,6 @@ document.body.className = c;
 </script>
 
 {include uri='design:page_browser_alert.tpl'}
-
-
-{cache-block keys=array( $module_result.uri, $basket_is_empty, $current_user.contentobject_id, $extra_cache_key, $ente_cache_key )}
 
 <div id="page" class="{$pagestyle} {$main_style}"{$background}>
 
@@ -112,7 +107,7 @@ document.body.className = c;
     	{include name=valuation node_id=$current_node_id uri='design:parts/openpa/valuation.tpl'}
 	{/if}
 
-{cache-block keys=array( $ente_cache_key )}
+{cache-block expiry=86400 keys=array( $access_type.name, $extra_cache_key )}
     {include uri='design:page_footer.tpl'}
 {/cache-block}
 
