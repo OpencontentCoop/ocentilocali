@@ -24,11 +24,6 @@
 		<a href={$link_contatti.url_alias|ezurl()} title="Trova il modo migliore per contattarci">Contatti</a>
 	</li>
 {/if}
-{if and($current_user.is_logged_in, fetch( 'user', 'has_access_to', hash( 'module', 'aggregator', 'function', 'dashboard' )) )}
-    <li>
-		<a href={'sharing/dashboard'|ezurl()}>Pannello condivisioni</a>
-	</li>
-{/if}
 {if and($current_user.is_logged_in, fetch( 'user', 'has_access_to', hash( 'module', 'content', 'function', 'dashboard' )) )}
     <li>
 		<a href={'content/dashboard'|ezurl()}>Pannello strumenti</a>

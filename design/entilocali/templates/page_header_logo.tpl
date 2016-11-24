@@ -6,7 +6,7 @@
         {def $siteName = cond( $ente, $ente.name|wash(), ezini('SiteSettings','SiteName')|wash() )}
         <a href={cond( $ente, $ente.url, '/' )|ezurl} title="{$siteName}"{$siteName|autofont( 'logo' )}>
             {if and( $ente, is_set( $ente.data_map.stemma ), $ente.data_map.stemma.has_content )}
-                <span class="logo">{attribute_view_gui attribute=$ente.data_map.stemma image_class=logo}</span>
+                <span class="logo">{attribute_view_gui attribute=$ente.data_map.stemma image_class=entilocali_logo}</span>
             {/if}
             <span class="sitename">
                 {$siteName}

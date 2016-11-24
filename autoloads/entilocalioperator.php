@@ -151,8 +151,8 @@ class EntilocaliOperator
                                 /** @var eZImageAliasHandler $image */
                                 $image = $attribute->content();
                                 //eZDebug::writeNotice($image->attributes(), __METHOD__ );
-                                if ($image->hasAttribute('background')) {
-                                    $backgroundObject = $image->attribute('background');
+                                if ($image->hasAttribute('entilocali_background')) {
+                                    $backgroundObject = $image->attribute('entilocali_background');
                                     //eZDebug::writeNotice( $backgroundObject, __METHOD__ );
                                     if (isset( $backgroundObject['full_path'] )) {
                                         $background = ' style="background-image: url(/' . $backgroundObject['full_path'] . ');"';

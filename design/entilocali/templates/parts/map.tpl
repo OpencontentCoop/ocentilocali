@@ -14,7 +14,7 @@
     {def $limit = 5000}
 {/if}
 
-{def $filters_hash = hash( 'filter', array( 'attr_geo_t:*' ) )}
+{def $filters_hash = hash( 'filter', array( concat(solr_meta_field('geo'),':*' ) ) )}
 {def $map_search_hash = hash(
                                'subtree_array', array( $parent_node_id ),
                                'class_id', array( $class ),
@@ -26,7 +26,7 @@
                                'subtree_array', array( $parent_node_id ),
                                'class_id', array( $class ),
                                'limit', 1,
-                               'facet',array(hash('field','submeta_tipo_luogo___id_si', limit,14))
+                               'facet',array(hash('field',solr_meta_subfield('tipo_luogo','id'), limit,14))
                                )
 }
 {def $filter_attributes = array()}
