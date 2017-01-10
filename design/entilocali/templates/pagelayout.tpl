@@ -11,7 +11,7 @@
     {def $extra_cache_key = ''}
 {/if}
 
-{cache-block expiry=86400 keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key, $cookies|implode(',') )}
+{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key, $cookies|implode(',') )}
 {def $browser          = checkbrowser('checkbrowser')
      $pagedata         = openpapagedata()
      $pagestyle        = $pagedata.css_classes
@@ -111,7 +111,7 @@ document.body.className = c;
     	{include name=valuation node_id=$current_node_id uri='design:parts/openpa/valuation.tpl'}
 	{/if}
 
-{cache-block expiry=86400 keys=array( $access_type.name, $extra_cache_key )}
+{cache-block keys=array( $access_type.name, $extra_cache_key )}
     {include uri='design:page_footer.tpl'}
 {/cache-block}
 
