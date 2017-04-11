@@ -1,5 +1,8 @@
 {* Move toolbar to top of page using classes and css (see websitetoolbar.tpl) *}
 {literal}
+<style>
+  body.floating-wt{margin-top: 35px;}
+</style>
 <script type="text/javascript">
 <!--
 (function()
