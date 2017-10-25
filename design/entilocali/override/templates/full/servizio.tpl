@@ -1,8 +1,6 @@
 {include name=menu_control node=$node uri='design:parts/common/menu_control.tpl'}
 
 {def $user_struttura_attribute_ID = openpaini( 'ControlloUtenti', concat('user_',$node.class_identifier,'_attribute_ID') )
-	 $role_folder = openpaini( 'ControlloUtenti', 'role_folder' )
-	 $role_struttura_attribute_ID = openpaini( 'ControlloUtenti', 'role_struttura_attribute_ID' )     
 	 $attributi_classificazione_strutture = openpaini( 'DisplayBlocks', 'attributi_classificazione_strutture' )		
 	 $classes_parent_to_edit=array('file_pdf', 'news')
 	 $classi_da_non_commentare=array('news', 'comment')
@@ -22,8 +20,13 @@
    <div class="class-{$node.object.class_identifier}">
 
     <h1>{$node.name|wash()}</h1>
-    <div class="last-modified">Ultima modifica: <strong>{$node.object.modified|l10n(date)}</strong></div>
-	{if and( is_set( $node.object.data_map.cod_servizio ), is_set( $node.object.data_map.cod_incarico ), is_set( $node.object.data_map.cod_ufficio ), is_set( $node.object.data_map.cod_struttura ), is_set( $node.object.data_map.cod_altrastruttura ) )}
+    
+    {* DATA e ULTIMAMODIFICA *}
+	{include name = last_modified
+             node = $node             
+             uri = 'design:parts/openpa/last_modified.tpl'}
+             
+	{*if and( is_set( $node.object.data_map.cod_servizio ), is_set( $node.object.data_map.cod_incarico ), is_set( $node.object.data_map.cod_ufficio ), is_set( $node.object.data_map.cod_struttura ), is_set( $node.object.data_map.cod_altrastruttura ) )}
 	<div class="last-modified">Codice: 
         <strong>
             {attribute_view_gui attribute=$node.object.data_map.cod_servizio} 
@@ -33,7 +36,7 @@
             {if gt($node.object.data_map.cod_altrastruttura,0)} .{attribute_view_gui attribute=$node.object.data_map.cod_altrastruttura} {/if}
         </strong>        
 	</div>
-    {/if}
+    {/if*}
 
 	{* EDITOR TOOLS *}
 	{include name = editor_tools
@@ -48,29 +51,16 @@
 	<div class="attributi-base">
 	{def $style='col-odd' 
 		 $attribute=''}
-	
-{* ------------------------------- descrizione ------------------------------- *}    
-    {if $node.data_map.descrizione.has_content}
-        {set $attribute=$node.data_map.descrizione }
-            {if $attributi_da_escludere|contains($attribute.contentclass_attribute_identifier)|not()}
-            {if $style|eq('col-even')}{set $style='col-odd'}{else}{set $style='col-even'}{/if}
-                {if $oggetti_senza_label|contains($attribute.contentclass_attribute_identifier)|not()}
-                    <div class="{$style} col float-break attribute-{$attribute.contentclass_attribute_identifier}">
-                        <div class="col-title"><span class="label">{$attribute.contentclass_attribute_name}</span></div>
-                        <div class="col-content"><div class="col-content-design">
-                            {attribute_view_gui  attribute=$attribute}
-                        </div></div>
-                    </div>
-                {else}
-                    <div class="{$style} col col-notitle float-break attribute-{$attribute.contentclass_attribute_identifier}">
-                        <div class="col-content"><div class="col-content-design">
-                            {attribute_view_gui attribute=$attribute}
-                        </div></div>
-                    </div>
-                {/if}
-            {/if}	
-    {/if}	
     
+    {if and( is_set( $node.data_map.descrizione ), $node.data_map.descrizione.has_content )}
+        {if $style|eq('col-even')}{set $style='col-odd'}{else}{set $style='col-even'}{/if}
+        <div class="{$style} col float-break col-notitle">
+            <div class="col-content"><div class="col-content-design">
+            {attribute_view_gui attribute=$node.data_map.descrizione}
+            </div></div>
+        </div>
+    {/if}
+	
 {* ------------------------------- sede ------------------------------- *}
 	{if $node.data_map.sede.has_content}
 	{set $attribute=$node.data_map.sede }
@@ -250,77 +240,29 @@
 		{/if}		
 	{/if}		
 	
-	
-{* ------------------------------- responsabile dal ruolo------------------------------- *}
-	{* Ricerca del Responsabile tramite gli oggetti correlati inversamente secondo 'extended_attribute_filter' *}
 
-	{def $resp_correlati_byrole = fetch('content','list', hash('parent_node_id', $role_folder, 'extended_attribute_filter', 
-								     hash('id', 'ObjectRelationFilter', 
-									  'params', array($role_struttura_attribute_ID,$node.object.id) 
-									  ) ) )}
-	
-	{if $resp_correlati_byrole|count()}
-	{if $style|eq('col-even')}{set $style='col-odd'}{else}{set $style='col-even'}{/if}
-	<div class="{$style} col float-break attribute-responsabile">
-		<div class="col-title"><span class="label">Dirigente</span></div>
-		<div class="col-content"><div class="col-content-design">
-			{if $resp_correlati_byrole|count()}
-				{foreach $resp_correlati_byrole as $object_correlato}			
-					 <a href= {$object_correlato.url_alias|ezurl()}>
-						{attribute_view_gui attribute=$object_correlato.data_map.utente}
-					</a>
-					{delimiter} <span class="delimiter">-</span> {/delimiter}
-				{/foreach}
-			{else}
-				{if $node.data_map.responsabile.has_content}
-					{attribute_view_gui attribute=$node.data_map.responsabile}
+{* ------------------------------- sito web-------------------------------  *}
+	{if and( is_set( $node.data_map.url ), $node.data_map.url.has_content )}
+	{set $attribute=$node.data_map.url }
+		{if $attributi_da_escludere|contains($attribute.contentclass_attribute_identifier)|not()}
+			{if $style|eq('col-even')}{set $style='col-odd'}{else}{set $style='col-even'}{/if}
+				{if $oggetti_senza_label|contains($attribute.contentclass_attribute_identifier)|not()}
+					<div class="{$style} col float-break attribute-{$attribute.contentclass_attribute_identifier}">
+						<div class="col-title"><span class="label">{$attribute.contentclass_attribute_name}</span></div>
+						<div class="col-content"><div class="col-content-design">
+							{attribute_view_gui  attribute=$attribute}
+						</div></div>
+					</div>
+				{else}
+					<div class="{$style} col col-notitle float-break attribute-{$attribute.contentclass_attribute_identifier}">
+						<div class="col-content"><div class="col-content-design">
+							{attribute_view_gui attribute=$attribute}
+						</div></div>
+					</div>
 				{/if}
-			{/if}		
-		</div></div>
-	</div>
-    {else}
-        {if $node.data_map.responsabile.has_content}
-        {set $attribute=$node.data_map.responsabile }
-            {if $attributi_da_escludere|contains($attribute.contentclass_attribute_identifier)|not()}
-                {if $style|eq('col-even')}{set $style='col-odd'}{else}{set $style='col-even'}{/if}
-                {if $oggetti_senza_label|contains($attribute.contentclass_attribute_identifier)|not()}
-                    <div class="{$style} col float-break attribute-{$attribute.contentclass_attribute_identifier}">
-                        <div class="col-title"><span class="label">{$attribute.contentclass_attribute_name}</span></div>
-                        <div class="col-content"><div class="col-content-design">
-                            {attribute_view_gui  attribute=$attribute}
-                        </div></div>
-                    </div>
-                {else}
-                    <div class="{$style} col col-notitle float-break attribute-{$attribute.contentclass_attribute_identifier}">
-                        <div class="col-content"><div class="col-content-design">
-                            {attribute_view_gui attribute=$attribute}
-                        </div></div>
-                    </div>
-                {/if}
-            {/if}		
-        {elseif $node.data_map.responsabile_testo.has_content}
-        {set $attribute=$node.data_map.responsabile_testo }
-            {if $attributi_da_escludere|contains($attribute.contentclass_attribute_identifier)|not()}
-                {if $style|eq('col-even')}{set $style='col-odd'}{else}{set $style='col-even'}{/if}
-                {if $oggetti_senza_label|contains($attribute.contentclass_attribute_identifier)|not()}
-                    <div class="{$style} col float-break attribute-{$attribute.contentclass_attribute_identifier}">
-                        <div class="col-title"><span class="label">{$attribute.contentclass_attribute_name}</span></div>
-                        <div class="col-content"><div class="col-content-design">
-                            {attribute_view_gui  attribute=$attribute}
-                        </div></div>
-                    </div>
-                {else}
-                    <div class="{$style} col col-notitle float-break attribute-{$attribute.contentclass_attribute_identifier}">
-                        <div class="col-content"><div class="col-content-design">
-                            {attribute_view_gui attribute=$attribute}
-                        </div></div>
-                    </div>
-                {/if}
-            {/if}		
-        {/if}	
-	{/if}
-
-	
+		{/if}		
+	{/if}	
+  	
 {* ------------------------------- orario ------------------------------- *}
 	{if $node.data_map.orario.has_content}
 	{set $attribute=$node.data_map.orario }
@@ -412,86 +354,12 @@
 		{/if}		
 	{/if}		
 
+	
+{* ------------------------------- responsabile ------------------------------- *}	
+	{include struttura=$node style=$style icon=true uri='design:parts/ruoli_per_struttura.tpl'}  
+
 {* ------------------------------- personale ------------------------------- *}
-	{def $dipendenti_correlati=fetch( 'content', 'reverse_related_objects',
-					hash( 
-						'object_id', $node.object.id,
-						'attribute_identifier', $user_struttura_attribute_ID, 	
-						'sort_by',  array( 'name', true() )
-					) 
-				)}	
-	
-	{def $informatici_correlati=fetch( 'content', 'list',
-					hash(
-						'parent_node_id',  openpaini( 'ControlloUtenti', 'referenti_informatici' ),
-						'extended_attribute_filter', hash('id', 'ObjectRelationFilter', 
-							'params', array( $user_struttura_attribute_ID, $node.object.id )),
-						'sort_by',  array( 'name', true() )
-					) 
-				)}		
-
-	{def $editor_correlati=fetch( 'content', 'list',
-					hash(
-						'parent_node_id',  openpaini( 'ControlloUtenti', 'redattori' ),
-						'extended_attribute_filter', hash('id', 'ObjectRelationFilter', 
-							'params', array( $user_struttura_attribute_ID, $node.object.id )),
-						'sort_by',  array( 'name', true() )
-					) 
-				)}		
-
-	{if $dipendenti_correlati|count()}	
-	{if $style|eq('col-even')}{set $style='col-odd'}{else}{set $style='col-even'}{/if}
-	<div class="{$style} col float-break attribute-personale">
-		<div class="col-title"><span class="label">Personale</span></div>
-		<div class="col-content"><div class="col-content-design">					
-	
-		<ul>
-		{foreach $dipendenti_correlati as $object_correlato}
-			<li><a href={$object_correlato.main_node.url_alias|ezurl()}>{$object_correlato.name}</a>
-
-			{def $telefoni_correlati=fetch('content', 'list',
-						hash('parent_node_id', openpaini( 'ControlloUtenti', 'telefoni' ),
-							 'extended_attribute_filter', hash('id', 'ObjectRelationFilter', 
-								'params', array(openpaini( 'ControlloUtenti', 'utente_telefono_attribute_ID' ), $object_correlato.id) ) ) )}
-			{if $telefoni_correlati|count()}
-				{foreach $telefoni_correlati as $tel_correlato}
-					<small>
-					{$tel_correlato.name} 					
-					{if $tel_correlato.data_map.numero_interno.has_content}
-						(interno: {attribute_view_gui attribute=$tel_correlato.data_map.numero_interno})
-					{/if}
-					</small>
-				{/foreach}
-			{elseif is_set( $object_correlato.data_map.telefono )}
-                <small>{attribute_view_gui attribute=$object_correlato.data_map.telefono}</small>
-            {/if}
-			{undef $telefoni_correlati}
-			</li>    
-		{/foreach}
-		</ul>
-		
-		{if $informatici_correlati|count()}	
-		<h5>Referenti informatici</h5>
-		<ul>
-		{foreach $informatici_correlati as $object_correlato}
-			 <li><a href={$object_correlato.url_alias|ezurl()}>{$object_correlato.name}</a></li>    
-		{/foreach}
-		</ul>
-		{/if}
-		
-		{if $editor_correlati|count()}	
-		<h5>Redattori sito/intranet</h5>
-		<ul>
-		{foreach $editor_correlati as $object_correlato}
-			 <li><a href={$object_correlato.url_alias|ezurl()}>{$object_correlato.name}</a></li>      
-		{/foreach}
-		</ul>
-		{/if}
-	
-		</div></div>
-	</div>
-	
-	{/if}		
+	{include struttura=$node style=$style icon=true uri='design:parts/personale_per_struttura.tpl'}	
 
 {* ------------------------------- gps (mappa) -------------------------------  *}
 	{if $node.data_map.gps.has_content}
