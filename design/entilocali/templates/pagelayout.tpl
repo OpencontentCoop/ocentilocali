@@ -59,12 +59,11 @@ document.body.className = c;
             {include uri=concat('design:extra/', $extra_template)}
         {/foreach}
     {/if}
-
-    {include uri='design:page_header.tpl'}
-
-{/cache-block}    
+{/cache-block}
 
 {cache-block keys=array( $module_result.uri, $basket_is_empty, $current_user.contentobject_id, $extra_cache_key )}
+    {include uri='design:page_header.tpl'}
+
     {if and( $pagedata.website_toolbar, $pagedata.is_edit|not)}
         {include uri='design:page_toolbar.tpl'}
     {/if}
