@@ -11,7 +11,7 @@
     {def $extra_cache_key = ''}
 {/if}
 
-{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key, $cookies|implode(',') )}
+{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key )}
 {def $browser          = checkbrowser('checkbrowser')
      $pagedata         = openpapagedata()
      $pagestyle        = $pagedata.css_classes
@@ -27,9 +27,7 @@
 {include uri='design:page_head.tpl'}
 
 <!-- Site: {ezsys( 'hostname' )} -->
-{if ezsys( 'hostname' )|contains( 'opencontent' )}
-<META name="robots" content="NOINDEX,NOFOLLOW" />
-{/if}
+{if ezsys( 'hostname' )|contains( 'opencontent' )}<META name="robots" content="NOINDEX,NOFOLLOW" />{/if}
 
 {include uri='design:page_head_style.tpl'}
 <!--[if lte IE 8]> <style type="text/css"> @import url({'stylesheets/iefonts.css'|ezdesign()}); </style> <![endif]-->
@@ -38,16 +36,16 @@
 </head>
 <body class="no-js">
 <script type="text/javascript">{literal}
-//<![CDATA[
-var UiContext = {/literal}"{$ui_context}"{literal};
-var UriPrefix = {/literal}{'/'|ezurl()}{literal};
-var PathArray = [{/literal}{if is_set( $pagedata.path_array[0].node_id )}{foreach $pagedata.path_array|reverse as $path}{$path.node_id}{delimiter},{/delimiter}{/foreach}{/if}{literal}];
+    //<![CDATA[
+    var UiContext = {/literal}"{$ui_context}"{literal};
+    var UriPrefix = {/literal}{'/'|ezurl()}{literal};
+    var PathArray = [{/literal}{if is_set( $pagedata.path_array[0].node_id )}{foreach $pagedata.path_array|reverse as $path}{$path.node_id}{delimiter},{/delimiter}{/foreach}{/if}{literal}];
 
-(function(){var c = document.body.className;
-c = c.replace(/no-js/, 'js');
-document.body.className = c;
-})();
-//]]>{/literal}
+    (function(){var c = document.body.className;
+    c = c.replace(/no-js/, 'js');
+    document.body.className = c;
+    })();
+    //]]>{/literal}
 </script>
 
 {include uri='design:page_browser_alert.tpl'}
@@ -59,67 +57,97 @@ document.body.className = c;
             {include uri=concat('design:extra/', $extra_template)}
         {/foreach}
     {/if}
-{/cache-block}
 
+
+    <div id="header-position">
+        <div id="header" class="float-break width-layout">
+          
+            {include uri='design:page_header_logo.tpl'}
+                
+            <p class="hide"><a href="#main">{'Skip to main content'|i18n('design/ezflow/pagelayout')}</a></p>
+
+{/cache-block}     
 {cache-block keys=array( $module_result.uri, $basket_is_empty, $current_user.contentobject_id, $extra_cache_key )}
-    {include uri='design:page_header.tpl'}
-
-    {if and( $pagedata.website_toolbar, $pagedata.is_edit|not)}
-        {include uri='design:page_toolbar.tpl'}
-    {/if}
-
-    {if and( $pagedata.show_path, $current_node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), $module_result.uri|ne('/content/advancedsearch'), $module_result.uri|ne('/content/search'), $module_result.uri|ne('/content/advancedsearch/'), $module_result.uri|ne('/content/search/') ) }
-        {if is_set( $module_result.content_info )}    
-            {include uri='design:page_toppath.tpl'}
-        {/if}
-    {/if}
-
-    <div id="columns-position" class="width-layout {$pagedata.class_identifier}">
-    <div class="columns-ml"><div class="columns-mr"><div class="columns-mc">
-    <div class="columns-content">
-        
-        <div id="columns" class="float-break">
-    
-        {if $pagedata.left_menu}
-            {include uri='design:page_leftmenu.tpl'}
-        {/if}
-    
-    {/cache-block}
-    
-        {include uri='design:page_searchbox.tpl'}
-        {include uri='design:page_mainarea.tpl'}
-    
-    {cache-block keys=array( $module_result.uri, $basket_is_empty, $current_user.contentobject_id, $extra_cache_key, $cookie_dimensione, $cookie_contrasto )}
-    
-        {if is_unset($pagedesign)}
-            {def $pagedata   = ezpagedata()
-                 $pagedesign = $pagedata.template_look}
-        {/if}
-    
-        {if and($pagedata.extra_menu, $module_result.content_info)}
-            {include uri='design:page_extramenu.tpl'}
-        {/if}
-        
+            {if $is_login_page|not()}
+                {include uri='design:page_header_links.tpl'}
+            {/if}
+{/cache-block}            
+{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key )}          
+            {if and( $pagedata.top_menu, $is_login_page|not() )}
+                {include uri='design:page_topmenu.tpl'}
+            {/if}
+          
         </div>
     </div>
-    </div></div></div>
-    <div class="columns-bl"><div class="columns-br"><div class="columns-bc"></div></div></div>
+
+    <div id="page-content-position">
+        {def $page_title = false()}
+        {if is_set( $pagedata.persistent_variable.page_title )}
+            {set $page_title = $pagedata.persistent_variable.page_title}
+        {elseif is_comune()}
+            {set $page_title = is_comune().name|wash()}    
+        {/if}
+
+        {if $page_title}<div id="page-title" class="width-layout">{$page_title}</div>{/if}
+        <div id="page-content" class="width-layout">
+
+            {if and( $pagedata.website_toolbar, $pagedata.is_edit|not)}
+                {include uri='design:page_toolbar.tpl'}
+            {/if}
+
+            {if and( $pagedata.show_path, $current_node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), $module_result.uri|ne('/content/advancedsearch'), $module_result.uri|ne('/content/search'), $module_result.uri|ne('/content/advancedsearch/'), $module_result.uri|ne('/content/search/') ) }
+                {if is_set( $module_result.content_info )}    
+                    {include uri='design:page_toppath.tpl'}
+                {/if}
+            {/if}
+
+            <div id="columns-position" class="width-layout {$pagedata.class_identifier}">
+            <div class="columns-ml"><div class="columns-mr"><div class="columns-mc">
+            <div class="columns-content">
+                
+                <div id="columns" class="float-break">
+
+                    {if $pagedata.left_menu}
+                        {include uri='design:page_leftmenu.tpl'}
+                    {/if}
+
+{/cache-block}
+
+                    {include uri='design:page_searchbox.tpl'}
+                    {include uri='design:page_mainarea.tpl'}
+                
+{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key )}
+
+                    {if is_unset($pagedesign)}
+                        {def $pagedata   = ezpagedata()
+                             $pagedesign = $pagedata.template_look}
+                    {/if}
+                
+                    {if and($pagedata.extra_menu, $module_result.content_info)}
+                        {include uri='design:page_extramenu.tpl'}
+                    {/if}
+    
+                </div>
+            </div>
+            </div></div></div>
+            <div class="columns-bl"><div class="columns-br"><div class="columns-bc"></div></div></div>
+            </div>
+
+        	{if and( $current_node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), $pagedata.class_identifier|ne('frontpage'), $pagedata.class_identifier|ne('') ) }
+            	{include name=valuation node_id=$current_node_id uri='design:parts/openpa/valuation.tpl'}
+        	{/if}
+
+        </div>
     </div>
 
-	{if and( $current_node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), $pagedata.class_identifier|ne('frontpage'), $pagedata.class_identifier|ne('') ) }
-    	{include name=valuation node_id=$current_node_id uri='design:parts/openpa/valuation.tpl'}
-	{/if}
-
-{cache-block keys=array( $access_type.name, $extra_cache_key )}
     {include uri='design:page_footer.tpl'}
-{/cache-block}
 
 </div>
 
 {include uri='design:page_footer_script.tpl'}
 
-{/cache-block}
 
 <!--DEBUG_REPORT-->
 </body>
+{/cache-block}
 </html>
