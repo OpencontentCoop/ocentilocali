@@ -68,11 +68,31 @@
 
 {/cache-block}     
 {cache-block keys=array( $module_result.uri, $basket_is_empty, $current_user.contentobject_id, $extra_cache_key )}
+
+            {if is_set($pagedata)|not()}
+                {def $pagedata         = openpapagedata()
+                     $pagestyle        = $pagedata.css_classes
+                     $locales          = fetch( 'content', 'translation_list' )
+                     $pagedesign       = $pagedata.template_look
+                     $current_node_id  = $pagedata.node_id
+                     $custom_keys      = hash( 'is_login_page', $is_login_page, 'browser', $browser, 'is_area_tematica', is_area_tematica() )|merge( $cookies )
+                     $ente             = $pagedata.homepage}
+            {/if}
+
             {if $is_login_page|not()}
                 {include uri='design:page_header_links.tpl'}
             {/if}
 {/cache-block}            
-{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key )}          
+{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key )}
+            {if is_set($pagedata)|not()}
+                {def $pagedata         = openpapagedata()
+                     $pagestyle        = $pagedata.css_classes
+                     $locales          = fetch( 'content', 'translation_list' )
+                     $pagedesign       = $pagedata.template_look
+                     $current_node_id  = $pagedata.node_id
+                     $custom_keys      = hash( 'is_login_page', $is_login_page, 'browser', $browser, 'is_area_tematica', is_area_tematica() )|merge( $cookies )
+                     $ente             = $pagedata.homepage}
+            {/if}
             {if and( $pagedata.top_menu, $is_login_page|not() )}
                 {include uri='design:page_topmenu.tpl'}
             {/if}
@@ -133,9 +153,9 @@
             <div class="columns-bl"><div class="columns-br"><div class="columns-bc"></div></div></div>
             </div>
 
-        	{if and( $current_node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), $pagedata.class_identifier|ne('frontpage'), $pagedata.class_identifier|ne('') ) }
-            	{include name=valuation node_id=$current_node_id uri='design:parts/openpa/valuation.tpl'}
-        	{/if}
+            {if and( $current_node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), $pagedata.class_identifier|ne('frontpage'), $pagedata.class_identifier|ne('') ) }
+                {include name=valuation node_id=$current_node_id uri='design:parts/openpa/valuation.tpl'}
+            {/if}
 
         </div>
     </div>
