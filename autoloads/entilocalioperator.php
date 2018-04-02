@@ -15,7 +15,7 @@ class EntilocaliOperator
      */
     private $tpl;
 
-    function EntilocaliOperator()
+    function __construct()
     {
         $this->Operators = self::Operators();
         $this->ini = eZINI::instance('entilocali.ini');
