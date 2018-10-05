@@ -1,36 +1,44 @@
 <div id="links">
-<div id="links-design">
-<h2 class="hide">Menu di utilit&agrave;</h2>
-<ul>
+    <div id="links-design">
+        <h2 class="hide">Menu di utilit&agrave;</h2>
+        <ul>
 
-{if and($current_user.is_logged_in, $current_user.login|ne('utente'))}
-	{if $pagedesign.data_map.my_profile_label.has_content}
-	<li id="myprofile"><a href={"/user/edit/"|ezurl} title="{$pagedesign.data_map.my_profile_label.data_text|wash}">{$pagedesign.data_map.my_profile_label.data_text|wash}</a></li>
-	{/if}
-	{if $pagedesign.data_map.logout_label.has_content}
-	<li id="logout"><a href={"/user/logout"|ezurl} title="{$pagedesign.data_map.logout_label.data_text|wash}">{$pagedesign.data_map.logout_label.data_text|wash} ( {$current_user.contentobject.name|wash} )</a></li>
-	{/if}
-{else}
-	{if is_set($pagedesign.data_map.login_label)}
-		{if $pagedesign.data_map.login_label.has_content}
-		<li id="login" class="lastli"><a href={"/user/login"|ezurl} title="{$pagedesign.data_map.login_label.data_text|wash}">{$pagedesign.data_map.login_label.data_text|wash}</a></li>
-		{/if}
-	{/if}
-{/if}
+            <li id="login" style="display: none;">
+                <a style="border: none;" href={concat("/user/login?url=",$module_result.uri)|ezurl} title="Login">Login</a>
+            </li>
 
-{if openpaini( 'LinkSpeciali', 'NodoContattaci' )}
-    {def $link_contatti = fetch('content','node',hash('node_id', openpaini('LinkSpeciali', 'NodoContattaci') ))}
-	<li id="contatti" class="no-js-hide">
-		<a href={$link_contatti.url_alias|ezurl()} title="Trova il modo migliore per contattarci">Contatti</a>
-	</li>
-{/if}
-{if and($current_user.is_logged_in, fetch( 'user', 'has_access_to', hash( 'module', 'content', 'function', 'dashboard' )) )}
-    <li>
-		<a href={'content/dashboard'|ezurl()}>Pannello strumenti</a>
-	</li>
-{/if}
-{include uri='design:page_header_languages.tpl'}
+            {if openpaini( 'LinkSpeciali', 'NodoContattaci' )}
+                {def $link_contatti = fetch('content','node',hash('node_id', openpaini('LinkSpeciali', 'NodoContattaci') ))}
+                <li id="contatti" class="no-js-hide">
+                    <a href={$link_contatti.url_alias|ezurl()} title="Trova il modo migliore per
+                       contattarci">Contatti</a>
+                </li>
+            {/if}
 
-</ul>
+            {include uri='design:page_header_languages.tpl'}
+
+        </ul>
+    </div>
 </div>
-</div>
+
+<script>{literal}
+$(document).ready(function(){
+	var injectUserInfo = function(data){
+		if(data.error_text || !data.content){
+			$('#login').show();
+		}else{
+			$('#login').after('<li id="myprofile"><a href="/user/edit/" title="Visualizza il profilo utente">Il mio profilo</a></li><li id="logout"><a style="border: none;" href="/user/logout" title="Logout">Logout ('+data.content.name+')</a></li>');
+			if(data.content.has_access_to_dashboard){
+				$('#login').after('<li id="dashboard"><a href="/content/dashboard/" title="Pannello strumenti">Pannello strumenti</a></li>');
+			}
+		}
+	};
+	if(CurrentUserIsLoggedIn){
+		$.ez('openpaajax::userInfo', null, function(data){
+			injectUserInfo(data);
+		});
+	}else{
+		$('#login').show();
+	}
+});
+{/literal}</script>

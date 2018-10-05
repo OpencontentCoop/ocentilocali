@@ -101,7 +101,12 @@
 
 <div id="ezwt-miscaction" class="ezwt-actiongroup">
 {* Custom templates inclusion *}
+{def $avoid_replication = array()}
 {foreach $custom_templates as $custom_template}
+    {if $avoid_replication|contains($custom_template)}
+        {skip}
+    {/if}
+    {set $avoid_replication = $avoid_replication|append($custom_template)}
     {if is_set( $include_in_view[$custom_template] )}
         {def $views = $include_in_view[$custom_template]|explode( ';' )}
         {if $views|contains( 'full' )}
@@ -176,8 +181,6 @@
 
 </div>
 </div>
-
-{include uri='design:parts/websitetoolbar/floating_toolbar.tpl'}
 
 <!-- eZ website toolbar: END -->
 

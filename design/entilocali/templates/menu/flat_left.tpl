@@ -2,7 +2,8 @@
      $left_menu_depth = count($pagedata.path_array)|gt(1)|choose( 0, 1 )
      $parent_node = fetch(content, node, hash(node_id, $current_node_id))
      $left_menu_root_url = cond( $pagedata.path_array[$left_menu_depth].url_alias, $pagedata.path_array[$left_menu_depth].url_alias, $requested_uri_string )
-     $node_id = $pagedata.path_array[$left_menu_depth].node_id}
+     $node_id = $pagedata.path_array[$left_menu_depth].node_id
+     $usaMenuEsteso = openpaini( 'SideMenu', 'UsaMenuEsteso', 'enabled' )}
 
 {if is_area_tematica()}
     {set $left_menu_depth = inc($left_menu_depth)}
@@ -39,6 +40,10 @@ $(document).ready(function() {
 	{if $root_node.class_identifier|eq('trasparenza')}
 	  {set $inimenu = array( 'pagina_trasparenza' )}
 	{/if}
+
+    {if $root_node.depth|eq(1)}
+        {set $usaMenuEsteso = 'force-disabled'}
+    {/if}
 	
 	{def $left_menu_items = fetch( 'content', 'list', hash( 'parent_node_id', $root_node.node_id,
                                                             'sort_by', $root_node.sort_array,
@@ -88,7 +93,7 @@ $(document).ready(function() {
 					</div>
             {/if}
 
-            {if or( eq( $current_node_in_path_2, $item.node_id ), openpaini( 'SideMenu', 'UsaMenuEsteso', 'enabled' )|eq( 'enabled' ) )}
+            {if and( $usaMenuEsteso|ne( 'force-disabled' ), or( eq( $current_node_in_path_2, $item.node_id ), openpaini( 'SideMenu', 'UsaMenuEsteso', 'enabled' )|eq( 'enabled' ) ) )}
                 {def $sub_menu_items = fetch( 'content', 'list', hash( 'parent_node_id', $item.node_id, 'sort_by', $item.sort_array, 'data_map_load', false(),
                                                                       'class_filter_type', 'include', 'class_filter_array', $inimenu ) )
                      $sub_menu_items_count = $sub_menu_items|count}

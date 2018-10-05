@@ -1,166 +1,109 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="it" lang="it">
 <head>
-{set $current_user = fetch( 'user', 'current_user' )}
-{def $user_hash = concat( $current_user.role_id_list|implode( ',' ), ',', $current_user.limited_assignment_value_list|implode( ',' ) )
-     $is_login_page = cond( and( module_params()['module_name']|eq( 'user' ), module_params()['function_name']|eq( 'login' ) ), true(), false() )
-     $cookies = check_and_set_cookies()}
 
-
-{if is_set( $extra_cache_key )|not}
+    {if is_set( $extra_cache_key )|not}
     {def $extra_cache_key = ''}
-{/if}
+    {/if}
 
-{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key )}
-{def $browser          = checkbrowser('checkbrowser')
-     $pagedata         = openpapagedata()
-     $pagestyle        = $pagedata.css_classes
-     $locales          = fetch( 'content', 'translation_list' )
-     $pagedesign       = $pagedata.template_look
-     $current_node_id  = $pagedata.node_id
-     $main_style       = get_main_style()
-     $custom_keys      = hash( 'is_login_page', $is_login_page, 'browser', $browser, 'is_area_tematica', is_area_tematica() )|merge( $cookies )
-     $ente             = $pagedata.homepage
-     $background       = entelocale_background()
-}
+    {if openpacontext().is_area_tematica}
+    {set $extra_cache_key = concat($extra_cache_key, 'areatematica_', openpacontext().is_area_tematica)}
+    {/if}
 
-{include uri='design:page_head.tpl'}
+    {if and( is_set( openpacontext().extra_template_list ), openpacontext().extra_template_list|count() )}
+    {set $extra_cache_key = concat($extra_cache_key, openpacontext().extra_template_list|implode('-'))}
+    {/if}
 
-<!-- Site: {ezsys( 'hostname' )} -->
-{if ezsys( 'hostname' )|contains( 'opencontent' )}<META name="robots" content="NOINDEX,NOFOLLOW" />{/if}
+    {debug-accumulator id=page_head_style name=page_head_style}
+    {include uri='design:page_head_style.tpl'}
+    <!--[if lte IE 8]> <style type="text/css"> @import url({'stylesheets/iefonts.css'|ezdesign()}); </style> <![endif]-->
+    {/debug-accumulator}
 
-{include uri='design:page_head_style.tpl'}
-<!--[if lte IE 8]> <style type="text/css"> @import url({'stylesheets/iefonts.css'|ezdesign()}); </style> <![endif]-->
-{include uri='design:page_head_script.tpl'}
+    {debug-accumulator id=page_head_script name=page_head_script}
+    {include uri='design:page_head_script.tpl'}
+    {/debug-accumulator}
+
+    {include uri='design:page_head_google-site-verification.tpl'}
+
+    {include uri='design:page_head.tpl'}
+    {no_index_if_needed()}
 
 </head>
-<body class="no-js">
-<script type="text/javascript">{literal}
-    //<![CDATA[
-    var UiContext = {/literal}"{$ui_context}"{literal};
-    var UriPrefix = {/literal}{'/'|ezurl()}{literal};
-    var PathArray = [{/literal}{if is_set( $pagedata.path_array[0].node_id )}{foreach $pagedata.path_array|reverse as $path}{$path.node_id}{delimiter},{/delimiter}{/foreach}{/if}{literal}];
 
-    (function(){var c = document.body.className;
-    c = c.replace(/no-js/, 'js');
-    document.body.className = c;
-    })();
-    //]]>{/literal}
+<body class="no-js">
+<script type="text/javascript">
+//<![CDATA[
+var CurrentUserIsLoggedIn = {cond(fetch('user','current_user').is_logged_in, 'true', 'false')};
+var UiContext = "{$ui_context}";
+var UriPrefix = {'/'|ezurl()};
+var PathArray = [{if is_set( openpacontext().path_array[0].node_id )}{foreach openpacontext().path_array|reverse as $path}{$path.node_id}{delimiter},{/delimiter}{/foreach}{/if}];
+(function(){ldelim}var c = document.body.className;c = c.replace(/no-js/, 'js');document.body.className = c;{rdelim})();
+//]]>
 </script>
+
 
 {include uri='design:page_browser_alert.tpl'}
 
-<div id="page" class="{$pagestyle} {$main_style}"{$background}>
+{debug-accumulator id=entelocale_background name=entelocale_background}
+<div id="page" class="{openpacontext().css_classes} {openpacontext().current_main_style}"{entelocale_background()}>
+    {/debug-accumulator}
 
-    {if and( is_set( $pagedata.persistent_variable.extra_template_list ), $pagedata.persistent_variable.extra_template_list|count() )}
-        {foreach $pagedata.persistent_variable.extra_template_list as $extra_template}
+    {cache-block expiry=86400 ignore_content_expiry keys=array( $access_type.name, openpacontext().top_menu_cache_key, $extra_cache_key )}
+    {def $ente = fetch(openpa, homepage)
+         $pagedata = openpapagedata()
+         $current_node_id  = $pagedata.node_id}
+
+    {if and( is_set( openpacontext().extra_template_list ), openpacontext().extra_template_list|count() )}
+        {foreach openpacontext().extra_template_list as $extra_template}
             {include uri=concat('design:extra/', $extra_template)}
         {/foreach}
     {/if}
 
-
     <div id="header-position">
         <div id="header" class="float-break width-layout">
-          
             {include uri='design:page_header_logo.tpl'}
-                
             <p class="hide"><a href="#main">{'Skip to main content'|i18n('design/ezflow/pagelayout')}</a></p>
-
-{/cache-block}     
-{cache-block keys=array( $module_result.uri, $basket_is_empty, $current_user.contentobject_id, $extra_cache_key )}
-
-            {if is_set($pagedata)|not()}
-                {def $pagedata         = openpapagedata()
-                     $pagestyle        = $pagedata.css_classes
-                     $locales          = fetch( 'content', 'translation_list' )
-                     $pagedesign       = $pagedata.template_look
-                     $current_node_id  = $pagedata.node_id
-                     $custom_keys      = hash( 'is_login_page', $is_login_page, 'browser', $browser, 'is_area_tematica', is_area_tematica() )|merge( $cookies )
-                     $ente             = $pagedata.homepage}
-            {/if}
-
-            {if $is_login_page|not()}
+            {if openpacontext().is_login_page|not()}
                 {include uri='design:page_header_links.tpl'}
             {/if}
-{/cache-block}            
-{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key )}
-            {if is_set($pagedata)|not()}
-                {def $pagedata         = openpapagedata()
-                     $pagestyle        = $pagedata.css_classes
-                     $locales          = fetch( 'content', 'translation_list' )
-                     $pagedesign       = $pagedata.template_look
-                     $current_node_id  = $pagedata.node_id
-                     $custom_keys      = hash( 'is_login_page', $is_login_page, 'browser', $browser, 'is_area_tematica', is_area_tematica() )|merge( $cookies )
-                     $ente             = $pagedata.homepage}
-            {/if}
-            {if and( $pagedata.top_menu, $is_login_page|not() )}
+            {if and( openpacontext().top_menu, openpacontext().is_login_page|not() )}
                 {include uri='design:page_topmenu.tpl'}
             {/if}
-          
         </div>
     </div>
+    {/cache-block}
 
     <div id="page-content-position">
-        {def $page_title = false()}
-        {if is_set( $pagedata.persistent_variable.page_title )}
-            {set $page_title = $pagedata.persistent_variable.page_title}
-        {elseif is_comune()}
-            {set $page_title = is_comune().name|wash()}    
+
+        {if is_set( openpacontext().page_title )}
+            <div id="page-title" class="width-layout">{openpacontext().page_title}</div>
         {/if}
 
-        {if $page_title}<div id="page-title" class="width-layout">{$page_title}</div>{/if}
         <div id="page-content" class="width-layout">
 
-            {if and( $pagedata.website_toolbar, $pagedata.is_edit|not)}
-                {include uri='design:page_toolbar.tpl'}
+            {debug-accumulator id=page_toolbar name=page_toolbar}
+            {include uri='design:page_toolbar.tpl'}
+            {/debug-accumulator}
+
+            {if openpacontext().show_breadcrumb}
+            {debug-accumulator id=page_toppath name=page_toppath}
+            {include uri='design:page_toppath.tpl'}
+            {/debug-accumulator}
             {/if}
 
-            {if and( $pagedata.show_path, $current_node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), $module_result.uri|ne('/content/advancedsearch'), $module_result.uri|ne('/content/search'), $module_result.uri|ne('/content/advancedsearch/'), $module_result.uri|ne('/content/search/') ) }
-                {if is_set( $module_result.content_info )}    
-                    {include uri='design:page_toppath.tpl'}
-                {/if}
-            {/if}
-
-            <div id="columns-position" class="width-layout {$pagedata.class_identifier}">
-            <div class="columns-ml"><div class="columns-mr"><div class="columns-mc">
-            <div class="columns-content">
-                
-                <div id="columns" class="float-break">
-
-                    {if $pagedata.left_menu}
-                        {include uri='design:page_leftmenu.tpl'}
-                    {/if}
-
-{/cache-block}
-
-                    {include uri='design:page_searchbox.tpl'}
-                    {include uri='design:page_mainarea.tpl'}
-                
-{cache-block keys=array( $module_result.uri, $access_type.name, $user_hash, $extra_cache_key )}
-
-                    {if is_unset($pagedesign)}
-                        {def $pagedata   = ezpagedata()
-                             $pagedesign = $pagedata.template_look}
-                    {/if}
-                
-                    {if and($pagedata.extra_menu, $module_result.content_info)}
-                        {include uri='design:page_extramenu.tpl'}
-                    {/if}
-    
-                </div>
-            </div>
-            </div></div></div>
-            <div class="columns-bl"><div class="columns-br"><div class="columns-bc"></div></div></div>
-            </div>
-
-            {if and( $current_node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ), $pagedata.class_identifier|ne('frontpage'), $pagedata.class_identifier|ne('') ) }
-                {include name=valuation node_id=$current_node_id uri='design:parts/openpa/valuation.tpl'}
-            {/if}
+            {include uri='design:page_mainarea.tpl'}
 
         </div>
     </div>
 
-    {include uri='design:page_footer.tpl'}
+    {cache-block expiry=86400 ignore_content_expiry keys=array( $access_type.name )}
+    {if is_set($ente)|not()}
+    {def $ente = fetch(openpa, homepage)
+         $pagedata = openpapagedata()
+         $current_node_id  = $pagedata.node_id}
+    {/if}
+        {include uri='design:page_footer.tpl'}
+    {/cache-block}
 
 </div>
 
@@ -169,5 +112,4 @@
 
 <!--DEBUG_REPORT-->
 </body>
-{/cache-block}
 </html>

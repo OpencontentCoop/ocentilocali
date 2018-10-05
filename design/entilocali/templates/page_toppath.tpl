@@ -1,18 +1,20 @@
-{if is_area_tematica()}
-	{if is_set( is_area_tematica().data_map.cover )}
-        {if is_area_tematica().data_map.cover.has_content}
-    		<div class="immagine-area-tematica">
-                {attribute_view_gui css_class='header_area_tematica' image_class=header_area_tematica attribute=is_area_tematica().data_map.cover}
+{if openpacontext().is_area_tematica}
+    {if openpacontext().area_tematica_cover_image}
+        <div class="immagine-area-tematica">
+            <div class="header_area_tematica">
+                <img src="{openpacontext().area_tematica_cover_image}" />
             </div>
-        {/if}
-	{elseif is_set( is_area_tematica().data_map.image )}
-        {if is_area_tematica().data_map.image.has_content}
-            <div class="immagine-area-tematica">
-                {attribute_view_gui css_class='header_area_tematica' image_class=header_area_tematica attribute=is_area_tematica().data_map.image}
+        </div>
+    {elseif openpacontext().area_tematica_image}
+        <div class="immagine-area-tematica">
+            <div class="header_area_tematica">
+                <img src="{openpacontext().area_tematica_image}" />
             </div>
-        {/if}
-	{/if}
+        </div>
+    {/if}
 {/if}
-<div id="path">
-    {include uri=concat('design:parts/', $pagedata.show_path, '.tpl')}
+<div id="path-wrapper">
+    <div id="path" class="width-layout">
+        {include uri='design:parts/path.tpl'}
+    </div>
 </div>

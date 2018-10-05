@@ -2,9 +2,9 @@
 {if and( $left_menu_depth|eq(1), $pagedata.path_array[0].node_id|ne( ezini( 'NodeSettings', 'RootNode', 'content.ini' ) ) )}  
   {set $left_menu_depth = 0}  
 {/if}
-{if is_area_tematica()}
+{*if is_area_tematica()}
   {set $left_menu_depth = inc( $left_menu_depth )}
-{/if}
+{/if*}
 
 {def $left_menu_root_node = $pagedata.path_array[$left_menu_depth]
      $left_menu_root_url = cond( $pagedata.path_array[$left_menu_depth].url_alias, $pagedata.path_array[$left_menu_depth].url_alias, $requested_uri_string )
