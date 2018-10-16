@@ -4,7 +4,7 @@
         <ul>
 
             <li id="login" style="display: none;">
-                <a style="border: none;" href={concat("/user/login?url=",$module_result.uri)|ezurl} title="Login">Login</a>
+                <a style="border: none;" href={"/user/login"|ezurl} title="Login">Login</a>
             </li>
 
             {if openpaini( 'LinkSpeciali', 'NodoContattaci' )}
