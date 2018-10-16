@@ -19,7 +19,7 @@
 {/if}
 
 {* aiutaci a migliorare *}
-{if and( $homepage.node_id|eq($node.node_id), $node.class_identifier|ne('frontpage'), $node.class_identifier|ne('homepage'), is_set($persistent_variable.hide_valuation)|not() ) }
+{if and( $homepage.node_id|ne($node.node_id), $node.class_identifier|ne('frontpage'), $node.class_identifier|ne('homepage'), is_set($persistent_variable.hide_valuation)|not() ) }
     {include name=valuation node_id=$node.node_id uri='design:parts/openpa/valuation.tpl'}
 {/if}
 
