@@ -38,6 +38,7 @@ var UiContext = "{$ui_context}";
 var UriPrefix = {'/'|ezurl()};
 var PathArray = [{if is_set( openpacontext().path_array[0].node_id )}{foreach openpacontext().path_array|reverse as $path}{$path.node_id}{delimiter},{/delimiter}{/foreach}{/if}];
 (function(){ldelim}var c = document.body.className;c = c.replace(/no-js/, 'js');document.body.className = c;{rdelim})();
+var ModuleResultUri = "{$module_result.uri}";
 //]]>
 </script>
 
