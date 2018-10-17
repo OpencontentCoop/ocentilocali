@@ -27,7 +27,8 @@
 	{set $view_parameters=$view_parameters|merge(hash('reference',0))}
 {/if}
 {if $view_parameters.reference|gt(0)}
-	{node_view_gui view='full' is_area_tematica=true()  content_node=fetch(content,node,hash(node_id,$view_parameters.reference))}
+	{def $embed_node = fetch( content, node, hash( 'node_id', $view_parameters.reference ) )}
+	{include uri=object_handler($embed_node).control_template.full node=$embed_node is_area_tematica=true()}
 {else}
 
 <div class="border-box">

@@ -8,7 +8,8 @@
 {/if}
 
 {if $reference|gt(0)}
-	{node_view_gui view='full' is_area_tematica=true() content_node=fetch( content, node, hash( node_id,$reference ) )}
+	{def $embed_node = fetch( content, node, hash( 'node_id',$reference ) )}
+	{include uri=object_handler($embed_node).control_template.full node=$embed_node}
 {else}
 
 {def $gruppo_dipendenti = ezini( 'ControlloUtenti', 'gruppo_dipendenti', 'openpa.ini')
