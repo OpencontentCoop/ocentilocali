@@ -5,7 +5,7 @@
     {def $class = 'luogo'}
 {/if}
 {if is_set( $height )|not()}
-    {def $height = '300px'}
+    {def $height = '500px'}
 {/if}
 {if is_set( $width )|not()}
     {def $width = '100%'}
@@ -38,8 +38,7 @@
 
 <div id="content-research-map">
 
-    <script type="text/javascript" src='http://maps.google.com/maps/api/js?sensor=true'></script>
-    {ezscript_require( array( 'ezjsc::jquery', 'jquery.ui.map.min.js', 'ocmap.js' ))}
+    {ezscript_require( array( 'ezjsc::jquery', 'ocmap.js' ))}
     <script type="text/javascript">
     {literal}
     $(document).ready( function(){
