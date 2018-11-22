@@ -217,7 +217,7 @@ $(function() {
             {if $facets_for_class[$id][$class.name]|count()}
             
                 {set $filters_parameters = getFilterParameters()
-                     $query = cond( ezhttp( 'SearchText','get','hasVariable' ), ezhttp( 'SearchText', 'get' ), '' )
+                     $query = cond( ezhttp( 'SearchText','get','hasVariable' ), ezhttp( 'SearchText', 'get' )|wash(), '' )
                      $filters_hash = hash( 'query', $query,
                                               'class_id', array( $class.id ),
                                               'limit', 1,
