@@ -22,7 +22,7 @@
 	
 {else}    
     {def $index = ezini( 'SiteSettings', 'IndexPage', 'site.ini' )|explode( 'content/view/full/' )|implode('')|explode( '/' )|implode('')}  
-  	{foreach $pagedata.path_array as $path}
+  	{foreach openpacontext().path_array as $path}
         {def $do = true()}        
         {if and( $index|ne( 2 ), $path.node_id|eq( 2 ) )}
             {set $do = false()}
