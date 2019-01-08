@@ -27,10 +27,10 @@
          $custom_templates_nodes = openpaini( 'SideMenu', 'CachedMenuCustomTemplateNodi', array() )}
 	
     {if is_area_tematica()}
-        {if is_set( $custom_templates_classes[$root_node.class_identifier] )}
-            {left_menu_cached( hash( 'root_node_id', is_area_tematica().node_id, 'template', $custom_templates_classes[$root_node.class_identifier] ) )}
-        {elseif is_set( $custom_templates_nodes[$left_menu_root_node.node_id] )}
-            {left_menu_cached( hash( 'root_node_id', is_area_tematica().node_id, 'template', $custom_templates_nodes[$left_menu_root_node.node_id] ) )}
+        {if is_set( $custom_templates_classes[is_area_tematica().class_identifier] )}
+            {left_menu_cached( hash( 'root_node_id', is_area_tematica().node_id, 'template', $custom_templates_classes[is_area_tematica().class_identifier] ) )}
+        {elseif is_set( $custom_templates_nodes[is_area_tematica().node_id] )}
+            {left_menu_cached( hash( 'root_node_id', is_area_tematica().node_id, 'template', $custom_templates_nodes[is_area_tematica().node_id] ) )}
         {else}
             {left_menu_cached( hash( 'root_node_id', is_area_tematica().node_id, 'user_hash', $user_hash ) )}
         {/if}
