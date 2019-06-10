@@ -16,8 +16,7 @@ class DataHandlerEntilocaliPartecipazioni implements OpenPADataHandlerInterface
         $data = array();
         $enti = array();
         $series = array();
-        //http://openpa.opencontent.it/Amministrazione-Trasparente/Enti-controllati/Societa-partecipate
-        $treeNode = 'http://openpa.opencontent.it/api/opendata/v1/content/node/912'; 
+        $treeNode = 'http://' . OpenPABase::getPrototypeRemoteHost() .'/api/opendata/v1/content/node/912';
         $parentObject = OpenPAApiNode::fromLink( $treeNode )->searchLocal( true, false, OpenPABase::getCurrentSiteaccessIdentifier() );
         
         if ( $parentObject instanceof eZContentObject )
