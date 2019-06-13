@@ -23,10 +23,9 @@
     {include uri='design:page_head_script.tpl'}
     {/debug-accumulator}
 
-    {include uri='design:page_head_google-site-verification.tpl'}
-
     {include uri='design:page_head.tpl'}
     {include uri='design:page_head_google_tag_manager.tpl'}
+    {include uri='design:page_head_google-site-verification.tpl'}
     {no_index_if_needed()}
 
 </head>
