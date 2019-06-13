@@ -26,6 +26,7 @@
     {include uri='design:page_head_google-site-verification.tpl'}
 
     {include uri='design:page_head.tpl'}
+    {include uri='design:page_head_google_tag_manager.tpl'}
     {no_index_if_needed()}
 
 </head>
@@ -41,7 +42,7 @@ var PathArray = [{if is_set( openpacontext().path_array[0].node_id )}{foreach op
 var ModuleResultUri = "{$module_result.uri|wash()}";
 //]]>
 </script>
-
+{include uri='design:page_body_google_tag_manager.tpl'}
 
 {include uri='design:page_browser_alert.tpl'}
 
