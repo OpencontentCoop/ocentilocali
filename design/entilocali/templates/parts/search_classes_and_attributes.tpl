@@ -104,10 +104,10 @@ $(function() {
 	{$open}
 	{if is_array($subtreearray)}
 		{foreach $subtreearray as $sta}
-			<input name="SubTreeArray[]" type="hidden" value="{$sta}" />
+			<input name="SubTreeArray[]" type="hidden" value="{$sta|wash()}" />
 		{/foreach}
 	{else}
-		<input name="SubTreeArray[]" type="hidden" value="{$subtreearray}" />
+		<input name="SubTreeArray[]" type="hidden" value="{$subtreearray|wash()}" />
 	{/if}
 	<label for="search-string">Ricerca libera</label>
     <input id="search-string" type="text" name="SearchText" value="" />
@@ -145,7 +145,7 @@ $(function() {
                     {case in=array('ezstring','eztext')}
                     {set $filterParameter = getFilterParameter( concat( 'attr_', $attribute.identifier, '_t' ) )}
                         <label for="{$attribute.identifier}">{$attribute.name}</label>
-                        <input id="{$attribute.identifier}" type="text" name="filter[{concat( 'attr_', $attribute.identifier, '_t' )}]" value="{if is_set($filterParameter[0])}{$filterParameter[0]}{/if}" />
+                        <input id="{$attribute.identifier}" type="text" name="filter[{concat( 'attr_', $attribute.identifier, '_t' )|wash()}]" value="{if is_set($filterParameter[0])}{$filterParameter[0]|wash()}{/if}" />
                     {/case}
                     
                     {case in=array('ezobjectrelationlist')}
@@ -161,13 +161,13 @@ $(function() {
                             <select id="{$attribute.identifier}" name="anno_s[]">
                                     <option value="">Qualsiasi anno</option>
                                     {foreach $anni as $anno}
-                                    <option value="{$anno}">{$anno}</option>
+                                    <option value="{$anno|wash()}">{$anno|wash()}</option>
                                     {/foreach}
                             </select>
                         {else}
                             {set $filterParameter = getFilterParameter( concat( 'attr_', $attribute.identifier, '_si' ) )}
                             <label for="{$attribute.identifier}">{$attribute.name}</label>
-                            <input id="{$attribute.identifier}" size="5" type="text" name="filter[{concat( 'attr_', $attribute.identifier, '_si' )}]" value="{if is_set($filterParameter[0])}{$filterParameter[0]}{/if}" />
+                            <input id="{$attribute.identifier}" size="5" type="text" name="filter[{concat( 'attr_', $attribute.identifier, '_si' )|wash()}]" value="{if is_set($filterParameter[0])}{$filterParameter[0]|wash()}{/if}" />
                         {/if}
                     {/case}
                     
@@ -187,10 +187,10 @@ $(function() {
         {if is_array($subtreearray)}
             {set $subtreearray = $subtreearray|unique()} 
             {foreach $subtreearray as $sta}
-                <input name="SubTreeArray[]" type="hidden" value="{$sta}" />
+                <input name="SubTreeArray[]" type="hidden" value="{$sta|wash()}" />
             {/foreach}
         {else}
-        <input name="SubTreeArray[]" type="hidden" value="{$subtreearray}" />
+        <input name="SubTreeArray[]" type="hidden" value="{$subtreearray|wash()}" />
         {/if}
     </div>
     
